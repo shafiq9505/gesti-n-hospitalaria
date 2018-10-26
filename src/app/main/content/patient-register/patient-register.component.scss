@@ -1,0 +1,84 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 600px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
+
+.flex-container {
+  display: flex;
+  background-color: Black;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 1px;
+  padding: 30px;
+  font-size: 30px;
+}
+
+.mat-select{
+  width:200px !important;
+  background-color: none !important;
+  font-size: 15px !important;
+}
+
+mat-list {
+    height: 300px;
+    // border: 3px solid green;
+    overflow: auto;
+}
+
+.mat-checkbox{
+  width:10px !important;
+  background-color: none !important;
+}
+
+.mat-card {
+  width: 2000;
+  height: 2000;
+}
+
+.cal {
+    width: 900px;
+    border: 0px solid #000;
+    padding:15px;
+    margin:0 auto;
+}
+
+
+label:first-of-type{
+    margin-left:200px;
+}
+
+table {
+    text-align: center;
+    width:100%;
+    margin-top:15px;
+}
+
+#overall {
+    width:50%;
+    height: 30px;
+}
+
+#infoPar {
+    margin-left:50px;
+}
+
+input-placeholder {
+    font-size: 2px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}

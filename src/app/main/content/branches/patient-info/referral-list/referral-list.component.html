@@ -1,0 +1,67 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}" fusePerfectScrollbar>
+
+  <!-- DATE COLUMN -->
+  <ng-container cdkColumnDef="date">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Date</mat-header-cell>
+    <mat-cell *cdkCellDef="let referral">
+      <p class="font-weight-600">{{referral.dateAdmitted}}</p>
+    </mat-cell>
+  </ng-container>
+  <!-- /DATE COLUMN -->
+
+  <!-- BLOOD PRESSURE -->
+    <ng-container cdkColumnDef="referralId">
+      <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Referral Id</mat-header-cell>
+      <mat-cell *cdkCellDef="let referral">
+        <p class="font-weight-600">
+          {{referral.referralId}}
+        </p>
+      </mat-cell>
+    </ng-container>
+     <!-- /BLOOD PRESSURE -->
+
+  <!-- HEIGHT -->
+  <ng-container cdkColumnDef="loct_name">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Location</mat-header-cell>
+    <mat-cell *cdkCellDef="let referral">
+      <p class="font-weight-600">
+        {{ referral.loct_name }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /HEIGHT -->
+
+  <!-- WEIGHT -->
+  <ng-container cdkColumnDef="doc_name">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Referral Doctor</mat-header-cell>
+    <mat-cell *cdkCellDef="let referral">
+      <p class="font-weight-600">
+        {{ referral.doc_name }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /WEIGHT -->
+
+  <!-- VISIT TEXT -->
+  <!-- <ng-container cdkColumnDef="visittext">
+    <mat-header-cell *cdkHeaderCellDef>Visit Text</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+      <p class="font-weight-600" [innerHTML]="visitnote.visittext" | keephtml>
+
+      </p>
+    </mat-cell>
+  </ng-container> -->
+  <!-- /VISIT TEXT -->
+
+  <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row
+    *cdkRowDef="let visitnote; columns: displayColumns;"
+    [routerLink]="'./'+this.visitnote.guid"
+    class="visitnote"
+    matRipple
+    [@animate]="{value:'*',params:{y:'100%'}}"
+    (click)="editVisitNote(visitnote)"
+    >
+  </mat-row>
+
+</mat-table>

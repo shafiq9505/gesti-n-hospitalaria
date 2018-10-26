@@ -1,0 +1,70 @@
+<div id="login" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="logo" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+            <img src="favicon.ico">
+        </div>
+
+        <div class="title" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+            Welcome to the Bee Happy.
+        </div>
+
+        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+            Welcome to Bee Happy.
+        </div>
+
+    </div>
+
+    <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+
+            <div class="logo" fxHide.gt-xs>
+                <span>F</span>
+            </div>
+
+            <div id="title" class="title">LOGIN TO YOUR ACCOUNT</div>
+
+            <form name="loginForm" [@formGroup]="loginForm" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="loginFormErrors.email.required">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                    <mat-error *ngIf="loginFormErrors.password.required">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+                    <mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox>
+
+                    <a class="forgot-password" [routerLink]="'/auth/forgot-password'">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button mat-raised-button color="accent" id="submit-button" class="submit-button" aria-label="LOGIN"
+                        [disabled]="loginForm.invalid" (click)="login()">
+                    LOGIN
+                </button>
+
+                <a class="reset-password" [routerLink]="'/auth/reset-password'">
+                    Reset Password?
+                </a>
+
+            </form>
+        </div>

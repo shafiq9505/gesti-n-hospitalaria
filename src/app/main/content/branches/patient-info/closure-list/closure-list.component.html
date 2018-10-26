@@ -1,0 +1,67 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}" fusePerfectScrollbar>
+
+   <!-- CLOSURE CHECKLIST -->
+   <ng-container cdkColumnDef="checklist">
+     <mat-header-cell *cdkHeaderCellDef>Closure Checklist</mat-header-cell>
+     <mat-cell *cdkCellDef="let closure">
+       <p class="font-weight-600">{{ closure.checklist }}</p>
+     </mat-cell>
+   </ng-container>
+   <!-- /CLOSURE CHECKLIST -->
+
+   <!-- FOLLOW-UP ARRANGEMENTS -->
+     <ng-container cdkColumnDef="followup">
+       <mat-header-cell *cdkHeaderCellDef>Follow up Arrangements</mat-header-cell>
+       <mat-cell *cdkCellDef="let closure">
+         <p class="font-weight-600">
+           {{ closure.followup }}
+         </p>
+       </mat-cell>
+     </ng-container>
+      <!-- /FOLLOW-UP ARRANGEMENTS -->
+
+   <!-- REASON FOR CLOSURE -->
+   <ng-container cdkColumnDef="reasonofclosure">
+     <mat-header-cell *cdkHeaderCellDef>Reason for Closure</mat-header-cell>
+     <mat-cell *cdkCellDef="let closure">
+       <p class="font-weight-600">
+         {{ closure.reasonofclosure }}
+       </p>
+     </mat-cell>
+   </ng-container>
+   <!-- /REASON OF CLOSURE -->
+
+   <!-- COMMENTS -->
+   <ng-container cdkColumnDef="comment">
+     <mat-header-cell *cdkHeaderCellDef>Comments about Reason<br> for Closure</mat-header-cell>
+     <mat-cell *cdkCellDef="let closure">
+       <p class="font-weight-600">
+         {{ closure.comment }}
+       </p>
+     </mat-cell>
+   </ng-container>
+   <!-- /COMMENTS -->
+
+   <!-- CASE SUMMARY -->
+   <ng-container cdkColumnDef="casesummary">
+     <mat-header-cell *cdkHeaderCellDef>Case Summary</mat-header-cell>
+     <mat-cell *cdkCellDef="let closure">
+       <p class="font-weight-600">
+         {{ closure.casesummary }}
+       </p>
+     </mat-cell>
+   </ng-container>
+   <!-- /CASE SUMMARY -->
+
+   <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+   <mat-row
+     *cdkRowDef="let visitnote; columns: displayColumns;"
+     [routerLink]="'./'+this.visitnote.guid"
+     class="visitnote"
+     matRipple
+     [@animate]="{value:'*',params:{y:'100%'}}"
+     (click)="editVisitNote(visitnote)"
+     >
+   </mat-row>
+
+ </mat-table>

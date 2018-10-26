@@ -1,0 +1,38 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+  
+  <ng-container cdkColumnDef="from">
+    <mat-header-cell *cdkHeaderCellDef>From</mat-header-cell>
+    <mat-cell *cdkCellDef="let ts">
+      <p class="font-weight-600">
+        {{ts.from}}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- sex Column -->
+  <ng-container cdkColumnDef="to">
+    <mat-header-cell *cdkHeaderCellDef>To</mat-header-cell>
+    <mat-cell *cdkCellDef="let ts">
+      <p class="text">
+        {{ts.to}}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- DOB Column -->
+  <ng-container cdkColumnDef="totalHours">
+    <mat-header-cell *cdkHeaderCellDef>Total Hours</mat-header-cell>
+    <mat-cell *cdkCellDef="let ts">
+      <p class="text">
+        {{ts.totalHours }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *cdkRowDef="let ts; columns: displayedColumns;" class="timesheet" [routerLink]="'/reports/'+ts.guid + '/timesheets'"
+    matRipple [@animate]="{value:'*',params:{y:'100%'}}">
+  </mat-row>
+</mat-table>
+<!-- 
+<mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator> -->

@@ -1,0 +1,300 @@
+<div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+
+    <!-- <div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+
+
+    <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+
+      <div [froalaEditor]></div>
+        <div class="profile-box add-post">
+
+            <div class="form" fxFlex>
+                <footer fxLayout="row" fxLayoutAlign="space-between center">
+
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <button mat-icon-button aria-label="Mark as complete" matTooltip="Mark as complete">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                        <button mat-icon-button aria-label="next_week" matTooltip="Follow up">
+                            <mat-icon>next_week</mat-icon>
+                        </button>
+
+                         <button mat-icon-button aria-label="Add location" matTooltip="Add location">
+                            <mat-icon>location_on</mat-icon>
+                        </button> -->
+
+    <!-- </div>
+
+                    <button mat-raised-button color="accent" class="post-button" aria-label="POST">POST</button>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+
+
+    </div>
+
+    <div class="timeline-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="45" fxFlex.gt-md="35">
+
+        <div class="profile-box latest-activity" fxLayout="column">
+
+
+
+
+            <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="title">Utilities</div>
+            </header>
+
+            <div class="content" fxLayout="row" fxLayoutWrap>
+                <div class="activities"> -->
+    <!-- <div class="activity" fxLayout="row" fxLayoutAlign="start start" -->
+    <!-- *ngFor="let activity of timeline.activities">
+                        <img [src]="activity.user.avatar" class="avatar" alt="{{activity.user.name}}"/> -->
+
+    <!-- <div fxLayout="column">
+
+                <a href="#">Weight</a>
+                <textarea placeholder="Please fill up"></textarea>
+                 <mat-divider></mat-divider>
+                 <a href="#">Pulse Rate</a>
+                 <textarea placeholder="Please fill up"></textarea>
+                  <mat-divider></mat-divider>
+                  <a href="#">Temperature</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                   <a href="#">Blood Pressure</a>
+                   <textarea placeholder="Please fill up"></textarea>
+                    <mat-divider></mat-divider>
+                  <a href="#">Chief complaint</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                 <a href="#">Chief complaint</a>
+                 <textarea placeholder="Please fill up"></textarea>
+                  <mat-divider></mat-divider>
+                 <a href="#">Medictation List</a>
+                 <textarea placeholder="Please fill up"></textarea>
+                  <mat-divider></mat-divider>
+                 <a (click) = "medication()">Medictation List</a>
+                 <textarea placeholder="Please fill up" matInput [formControl]="myControl" [matAutocomplete]="auto" ></textarea>
+                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                 <mat-option *ngFor="let option of filteredOptions | async" [value] = "option">
+                     {{option.name}}
+                 </mat-option>
+                </mat-autocomplete>
+                 <mat-divider></mat-divider>
+                <a href="#">ICD list</a>
+                <textarea placeholder="Please fill up"></textarea>
+                 <mat-divider></mat-divider>
+                <a href="#">Patient chart</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                 <a href="#">Reason for collection</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+
+               </div>
+
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+    <!-- SECTION 1-->
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+        <mat-step [stepControl]="section1">
+            <form [formGroup]="section1">
+                <ng-template matStepLabel>
+                    <strong>SECTION 1</strong>
+                </ng-template>
+                <!-- VISIT NOTES -->
+                <p> (i) VISIT NOTES </p>
+                <!-- <div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+         <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+          <div class="profile-box add-post">
+            <div class="form" fxFlex>
+              <textarea placeholder="VISIT NOTES"></textarea>
+              <footer fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <button mat-icon-button aria-label="Mark as complete" matTooltip="Mark as complete">
+                    <mat-icon>done</mat-icon>
+                  </button>
+                  <button mat-icon-button aria-label="next_week" matTooltip="Follow up">
+                    <mat-icon>next_week</mat-icon>
+                  </button>
+                </div>
+                <button mat-raised-button color="accent" class="post-button" aria-label="POST">POST</button>
+              </footer>
+            </div>
+          </div>
+        </div>
+          <mat-divider></mat-divider> -->
+
+                <!-- CHART -->
+                <p> (ii) CHART </p>
+                <!-- <div class="timeline-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="45" fxFlex.gt-md="35">
+         <div class="profile-box latest-activity" fxLayout="column">
+             <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                 <div class="title">Utilities</div>
+             </header>
+             <div class="content" fxLayout="row" fxLayoutWrap>
+                 <div class="activities">
+                 <div fxLayout="column">
+                 <a href="#">Weight</a>
+                 <textarea placeholder="Please fill up"></textarea>
+                  <mat-divider></mat-divider>
+                  <a href="#">Pulse Rate</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                   <a href="#">Temperature</a>
+                   <textarea placeholder="Please fill up"></textarea>
+                    <mat-divider></mat-divider>
+                    <a href="#">Blood Pressure</a>
+                    <textarea placeholder="Please fill up"></textarea>
+                     <mat-divider></mat-divider>
+                   <a href="#">Chief complaint</a>
+                   <textarea placeholder="Please fill up"></textarea>
+                    <mat-divider></mat-divider>
+                  <a href="#">Chief complaint</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                  <a href="#">Medictation List</a>
+                  <textarea placeholder="Please fill up"></textarea>
+                   <mat-divider></mat-divider>
+                 <a href="#">ICD list</a>
+                 <textarea placeholder="Please fill up"></textarea>
+                  <mat-divider></mat-divider>
+                 <a href="#">Patient chart</a>
+                   <textarea placeholder="Please fill up"></textarea>
+                    <mat-divider></mat-divider>
+                  <a href="#">Reason for collection</a>
+                   <textarea placeholder="Please fill up"></textarea>
+                    <mat-divider></mat-divider>
+                </div>
+             </div>
+         </div>
+     </div>
+ </div> -->
+
+                <!-- CHIEF COMPLAINT -->
+                <p> (iii) CHIEF COMPLAINT </p>
+
+                <!-- REASON OF COLLECTION -->
+                <p> (iv) REASON OF COLLECTION </p>
+
+                <div>
+                    <button mat-button matStepperNext>NEXT</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- SECTION 2-->
+        <mat-step [stepControl]="section2">
+            <form [formGroup]="section2">
+                <ng-template matStepLabel>
+                    <strong>SECTION 2</strong>
+                </ng-template>
+
+                <!-- DIAGNOSIS -->
+                <p> DIAGNOSIS </p>
+
+                <div>
+                    <button mat-button matStepperPrevious>BACK</button>
+                    <button mat-button matStepperNext>NEXT</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- SECTION 3-->
+        <mat-step [stepControl]="section3">
+            <form [formGroup]="section3">
+                <ng-template matStepLabel>
+                    <strong>SECTION 3</strong>
+                </ng-template>
+
+                <!-- MEDICATION -->
+                <div class="dialog-content-wrapper">
+
+                    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+                        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+                            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                                <mat-icon class="mr-12 mt-12"></mat-icon>
+                                <mat-form-field fxFlex>
+                                    <input name="name" formControlName="name" placeholder="Medication Name" matInput required [(ngModel)]="contact.name">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                                <mat-icon class="mr-12 mt-12"></mat-icon>
+                                <mat-form-field fxFlex>
+                                    <input name="dosage" formControlName="dosage" placeholder="Dosage" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                                <mat-icon class="mr-12 mt-12"></mat-icon>
+                                <mat-form-field fxFlex>
+                                    <input name="duration" formControlName="duration" placeholder="Duration" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                                <mat-icon class="mr-12 mt-12"></mat-icon>
+                                <mat-form-field fxFlex>
+                                    <input name="frequency" formControlName="frequency" placeholder="Frequency" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                                <mat-icon class="mr-12 mt-12"></mat-icon>
+                                <mat-form-field fxFlex>
+                                    <input name="duration_unit" formControlName="duration_unit" placeholder="Unit Duration" matInput>
+                                </mat-form-field>
+                            </div>
+
+                            <div>
+                                <button mat-raised-button type="submit" class="save-button mat-accent" [disabled]="contactForm.invalid" aria-label="SAVE">
+                                    SAVE
+                                    <i class="fa fa-floppy-o"></i>
+                                </button>
+
+                                <button mat-raised-button (click)="resetForm()" class="save-button mat-accent" aria-label="RESET">
+                                    RESET
+                                    <i class="fa fa-repeat"></i>
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>BACK</button>
+                    <button mat-button matStepperNext>NEXT</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- SECTION 4-->
+        <mat-step [stepControl]="section4">
+            <form [formGroup]="section4">
+                <ng-template matStepLabel>
+                    <strong>SECTION 4</strong>
+                </ng-template>
+
+                <!-- OCCASION OF SERVICE -->
+                <p> OCCASION OF SERVICE </p>
+
+                <div>
+                    <button mat-button matStepperPrevious>BACK</button>
+                    <button mat-button (click)="stepper.reset()">RESET</button>
+                    <button mat-button class="submit-button" aria-label="SUBMIT">SUBMIT</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>

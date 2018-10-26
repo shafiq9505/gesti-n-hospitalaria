@@ -1,0 +1,60 @@
+<div class="sidenav-content">
+
+    <div class="card mat-white-bg">
+        <!-- SIDENAV HEADER -->
+        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+
+            <!-- USER -->
+            <!-- <img [src]="user.avatar" class="avatar mr-16" [alt]="user.name"/> -->
+            <!-- <span class="h5">{{user.name}}</span> -->
+            <!-- / USER -->
+
+        </div>
+        <!-- / SIDENAV HEADER -->
+
+        <!-- SIDENAV CONTENT -->
+        <div class="content py-16" fusePerfectScrollbar>
+
+            <div class="nav">
+
+                <div class="nav-item" aria-label="mypatient" *ngIf="currentuser.role == 'Doctor'">
+                    <a class="nav-link" matRipple (click)="changeFilter('mypatient')" [ngClass]="{'active':filterBy ==='mypatient'}">
+                        <span class="title">My Patients ({{(totalMyPatients>0 ? totalMyPatients : '0')}})</span>
+                    </a>
+                </div>
+
+                <div class="nav-item" aria-label="all" (click)="changeFilter('all')">
+                    <a class="nav-link" matRipple [ngClass]="{'active':filterBy ==='all'}">
+                        <div class="title">Team Patients ({{(totalPatients >0 ? totalPatients : '0')}})</div>
+                    </a>
+                </div>
+
+                <div class="nav-item" aria-label="starred" (click)="changeFilter('starred')">
+                    <a class="nav-link" matRipple [ngClass]="{'active':filterBy ==='starred'}">
+                        <div class="title">High Alert Patients ({{(totalHighAlertPatients >0 ? totalHighAlertPatients : '0')}})</div>
+                    </a>
+                </div>
+
+                <div class="nav-item" aria-label="unassigned" (click)="changeFilter('unassigned')">
+                    <a class="nav-link" matRipple [ngClass]="{'active':filterBy ==='unassigned'}">
+                        <div class="title">Unassigned ({{(totalUnassignedPatients >0 ? totalUnassignedPatients : '0')}})</div>
+                    </a>
+                </div>
+
+                <div class="nav-item" aria-label="selfharm" (click)="changeFilter('selfharm')">
+                    <a class="nav-link" matRipple [ngClass]="{'active':filterBy ==='selfharm'}">
+                        <div class="title">Self-Harm Patients ({{(totalSelfHarmPatients >0 ? totalSelfHarmPatients : '0')}})</div>
+                    </a>
+                </div>
+
+                <!-- <div class="nav-item" aria-label="selfharm" (click)="changeFilter('closure')">
+                    <a class="nav-link" matRipple [ngClass]="{'active':filterBy ==='closure'}">
+                        <div class="title">Inactive Patients ({{totalClosurePatients}})</div>
+                    </a>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- / SIDENAV CONTENT -->

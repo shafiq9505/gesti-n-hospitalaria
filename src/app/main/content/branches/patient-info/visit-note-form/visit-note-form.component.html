@@ -1,0 +1,579 @@
+
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">{{dialogTitle}}</span>
+      <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog" [routerLink]="'/branches/'+ this.route">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+<mat-checkbox><label>Mark as complete</label></mat-checkbox>
+
+
+  <div mat-dialog-content class="-24 m0" fusePerfectScrollbar>
+    <!-- SECTION 1-->
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-step [stepControl]="section1">
+        <form [formGroup]="section1">
+          <ng-template matStepLabel>Visit Note</ng-template>
+
+          <form [formGroup]="visitForm" autocomplete="off">
+            <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">label</mat-icon>
+            <span class="section-title">
+              <strong>VISIT NOTE</strong>
+            </span>
+
+            <div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+
+              <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+
+                <div class="profile-box add-post">
+                  <div class="form" fxFlex>
+                    <mat-card>
+                      <div class="form" fxFlex>
+                        <select (change)="selectChangeHandler($event)">
+                          <option value="" disabled selected>Select a Template</option>
+                          <option *ngFor="let temp of template" [value]="temp.text">{{temp.title}}</option>
+                        </select>
+                        <br>
+                        <textarea [froalaEditor] formControlName="visittext" [(froalaModel)]="selectedTemp">
+                          {{selectedTemp}}
+                        </textarea>
+                      </div>
+                    </mat-card>
+                    <footer fxLayout="row" fxLayoutAlign="space-between center">
+                      <div fxLayout="row" fxLayoutAlign="start center">
+                      </div>
+                    </footer>
+                  </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <span class="section-title">
+                  <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">note</mat-icon>
+                  <strong>CHIEF COMPLAINTS</strong>
+                </span>
+
+                <div class="form" fxFlex>
+                  <mat-card>
+                    <textarea [froalaEditor] formControlName="chiefofcomplaints"></textarea>
+                  </mat-card>
+                </div>
+
+              </div>
+
+              <div class="timeline-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="45" fxFlex.gt-md="35">
+
+                <div class="profile-box latest-activity" fxLayout="column">
+
+                  <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="title">Patient Chart</div>
+                  </header>
+
+                  <div class="content" fxLayout="row" fxLayoutWrap>
+                    <div class="activities">
+
+                      <div fxLayout="column">
+                        <label for="date">Date</label>
+                        <input 
+                          name="date" 
+                          formControlName="date" 
+                          type="date" 
+                          placeholder="Please fill up" 
+                          [readonly]="isEdit" />
+                        <mat-divider></mat-divider>
+                        
+                        <label for="weight">Weight</label>
+                        <input 
+                          name="weight" 
+                          formControlName="weight" 
+                          type="text" 
+                          placeholder="Please fill up" 
+                          [readonly]="isEdit"/>
+                        <mat-divider></mat-divider>
+
+                        <label for="height">Height</label>
+                        <input 
+                          name="height" 
+                          formControlName="height" 
+                          type="text" 
+                          placeholder="Please fill up" 
+                          [readonly]="isEdit"/>
+                        <mat-divider></mat-divider>
+
+                        <label for="pulserate">Pulse Rate</label>
+                        <input 
+                          name="pulserate" 
+                          formControlName="pulserate" 
+                          type="text" 
+                          placeholder="Please fill up"  
+                          [readonly]="isEdit"/>
+                        <mat-divider></mat-divider>
+
+                        <label>Blood Pressure(Systolic/Top)</label>
+                        <input 
+                          name="top-pressure" 
+                          formControlName="systolic" 
+                          type="text" 
+                          placeholder="Please fill up" 
+                          [readonly]="isEdit"/>
+                        <mat-divider></mat-divider>
+
+                        <label>Blood Pressure(Diastolic/Bottom)</label>
+                        <input 
+                          name="bottom-pressure" 
+                          formControlName="diastolic" 
+                          type="text" 
+                          placeholder="Please fill up" 
+                          [readonly]="isEdit"/>
+                        <mat-divider></mat-divider>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+          </div>
+          <div>
+            <button mat-button mat-raised-button color="primary" matStepperNext>NEXT</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- SECTION 2-->
+      <mat-step [stepControl]="section2">
+        <form [formGroup]="section2">
+          <ng-template matStepLabel>Diagnosis</ng-template>
+          <p>
+            <strong> DIAGNOSIS </strong>
+          </p>
+
+          <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let chip of chips" [selectable]="selectable" [removable]="removable" (remove)="removeChip(chip)">
+                {{chip.code}} - {{chip.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+
+              <input placeholder="List of ICD10 Diseases" [matChipInputFor]="chipList" [matAutocomplete]="auto" [matChipInputAddOnBlur]="addOnBlur"
+              matInput [formControl]="autoCompleteChipList" #chipInput/>
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addChip($event, chipInput)">
+              <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                {{ option.code }} - {{ option.name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          </form>
+
+          <div>
+            <button mat-button mat-raised-button color="primary" matStepperPrevious>BACK</button>
+            <button mat-button mat-raised-button color="primary" matStepperNext>NEXT</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- SECTION 3-->
+      <mat-step [stepControl]="section3">
+        <form [formGroup]="section3">
+          <ng-template matStepLabel>Medication</ng-template>
+
+          <!-- MEDICATION -->
+          <button *ngIf="action !=='edit'" mat-raised-button (click)="newMedication()" class="save-button mat-accent" aria-label="SAVE">
+            Add Medication Data
+          </button>
+          <div *ngIf="action ==='edit'">
+            <app-medication-list [isEdit]="isEdit" [medList]="dataSource"></app-medication-list>
+          </div>
+          <div *ngIf="action !== 'edit'">
+            <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+              <!--Medication Name Column -->
+              <ng-container cdkColumnDef="medname">
+                <mat-header-cell *cdkHeaderCellDef>Medication Name</mat-header-cell>
+                <mat-cell *cdkCellDef="let medication">
+                  <p class="text-truncate font-weight-600">{{medication.name}}</p>
+                </mat-cell>
+              </ng-container>
+
+              <!-- Dosage Column -->
+              <ng-container cdkColumnDef="dosage">
+                <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-sm>Dosage</mat-header-cell>
+                <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-sm>
+                  <p class="text-truncate font-weight-600">
+                    {{medication.dosage}}
+                  </p>
+                </mat-cell>
+              </ng-container>
+
+              <!-- Duration Column -->
+              <ng-container cdkColumnDef="duration">
+                <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-md>Duration</mat-header-cell>
+                <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-md>
+                  <p class="duration text-truncate">
+                    {{medication.duration}}
+                  </p>
+                </mat-cell>
+              </ng-container>
+
+              <!-- frequency Column -->
+              <ng-container cdkColumnDef="frequency">
+                <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-lg>Frequency</mat-header-cell>
+                <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-lg>
+                  <p class="frequency text-truncate">
+                    {{medication.frequency}}
+                  </p>
+                </mat-cell>
+              </ng-container>
+
+
+              <!-- Buttons Column -->
+              <ng-container cdkColumnDef="buttons">
+                <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+                <mat-cell *cdkCellDef="let medication">
+                  <div fxFlex="row" fxLayoutAlign="end center">
+                    <!-- <button mat-icon-button (click)="$event.stopPropagation();toggleStar(contact.id)" aria-label="Toggle star">
+                    <mat-icon *ngIf="user.starred.includes(contact.id)">star</mat-icon>
+                    <mat-icon *ngIf="!user.starred.includes(contact.id)">star_outline</mat-icon>
+                </button> -->
+
+                    <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+
+                    <mat-menu #moreMenu="matMenu">
+                      <button mat-menu-item aria-label="remove" (click)="deleteMedication(medication)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove</span>
+                      </button>
+                    </mat-menu>
+                  </div>
+
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *cdkRowDef="let medication; columns: displayedColumns;" class="medication" (click)="editMedication(medication)"
+                matRipple [@animate]="{value:'*',params:{y:'100%'}}">
+              </mat-row>
+
+
+            </mat-table>
+
+          </div>
+
+          <div>
+            <button mat-button mat-raised-button color="primary" matStepperPrevious>BACK</button>
+            <button *ngIf="action !=='edit'" mat-button matStepperNext>NEXT</button>
+            
+<!--             
+            <button 
+              *ngIf="action ==='edit'" 
+              mat-raised-button 
+              (click)="dialogRef.close(['save',visitForm])" 
+              class="save-button 
+              mat-accent"
+              [disabled]="visitForm.invalid" 
+              aria-label="SAVE">
+              UPDATE
+            </button> 
+            -->
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- SECTION 4-->
+      <mat-step [stepControl]="section4" *ngIf="action !=='edit'">
+        <form [formGroup]="section4">
+          <ng-template matStepLabel>Occasion Of Service</ng-template>
+
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+
+            <!-- REACTIVE FORM EXAMPLE -->
+
+            <form class="mat-white-bg p-24 mr-24 mb-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form" [formGroup]="ocsForm"
+            >
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                <mat-form-field fxFlex="100">
+                  <input matInput placeholder="Location of service" formControlName="location" required>
+                </mat-form-field>
+
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                <mat-form-field fxFlex="100">
+                  <mat-select placeholder="Type of Service" formControlName="category" required>
+                    <mat-option *ngFor="let category of categories" value={{category.category}}>
+                      {{category.category}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutWrap>
+
+                <mat-form-field fxFlex="100">
+
+                  <mat-select placeholder="Minutes" formControlName="minutes" required>
+                    <mat-option [value]="' --'">
+                      --
+                    </mat-option>
+                    <mat-option [value]="' 1 Minutes'">
+                      1 Minutes
+                    </mat-option>
+                    <mat-option [value]="'2 Minutes'">
+                      2 Minutes
+                    </mat-option>
+                    <mat-option [value]="'3 Minutes'">
+                      3 Minutes
+                    </mat-option>
+                    <mat-option [value]="'4 Minutes'">
+                      4 Minutes
+                    </mat-option>
+                    <mat-option [value]="'5 Minutes'">
+                      5 Minutes
+                    </mat-option>
+                    <mat-option [value]="'6 Minutes'">
+                      6 Minutes
+                    </mat-option>
+                    <mat-option [value]="'7 Minutes'">
+                      7 Minutes
+                    </mat-option>
+                    <mat-option [value]="'8 Minutes'">
+                      8 Minutes
+                    </mat-option>
+                    <mat-option [value]="' 9 Minutes'">
+                      9 Minutes
+                    </mat-option>
+                    <mat-option [value]="'10 Minutes'">
+                      10 Minutes
+                    </mat-option>
+                    <mat-option [value]="'11 Minutes'">
+                      11 Minutes
+                    </mat-option>
+                    <mat-option [value]="'12 Minutes'">
+                      12 Minutes
+                    </mat-option>
+                    <mat-option [value]="'13 Minutes'">
+                      13 Minutes
+                    </mat-option>
+                    <mat-option [value]="'14 Minutes'">
+                      14 Minutes
+                    </mat-option>
+                    <mat-option [value]="'15 Minutes'">
+                      15 Minutes
+                    </mat-option>
+                    <mat-option [value]="'16 Minutes'">
+                      16 Minutes
+                    </mat-option>
+                    <mat-option [value]="'17 Minutes'">
+                      17 Minutes
+                    </mat-option>
+                    <mat-option [value]="'18 Minutes'">
+                      18 Minutes
+                    </mat-option>
+                    <mat-option [value]="'19 Minutes'">
+                      19 Minutes
+                    </mat-option>
+                    <mat-option [value]="'20 Minutes'">
+                      20 Minutes
+                    </mat-option>
+                    <mat-option [value]="'21 Minutes'">
+                      21 Minutes
+                    </mat-option>
+                    <mat-option [value]="'22 Minutes'">
+                      22 Minutes
+                    </mat-option>
+                    <mat-option [value]="'23 Minutes'">
+                      23 Minutes
+                    </mat-option>
+                    <mat-option [value]="'24 Minutes'">
+                      24 Minutes
+                    </mat-option>
+                    <mat-option [value]="'25 Minutes'">
+                      25 Minutes
+                    </mat-option>
+                    <mat-option [value]="'26 Minutes'">
+                      26 Minutes
+                    </mat-option>
+                    <mat-option [value]="'27 Minutes'">
+                      27 Minutes
+                    </mat-option>
+                    <mat-option [value]="'28 Minutes'">
+                      28 Minutes
+                    </mat-option>
+                    <mat-option [value]="'29 Minutes'">
+                      29 Minutes
+                    </mat-option>
+                    <mat-option [value]="'30 Minutes'">
+                      30 Minutes
+                    </mat-option>
+                    <mat-option [value]="'31 Minutes'">
+                      31 Minutes
+                    </mat-option>
+                    <mat-option [value]="'32 Minutes'">
+                      32 Minutes
+                    </mat-option>
+                    <mat-option [value]="'33 Minutes'">
+                      33 Minutes
+                    </mat-option>
+                    <mat-option [value]="'34 Minutes'">
+                      34 Minutes
+                    </mat-option>
+                    <mat-option [value]="'35 Minutes'">
+                      35 Minutes
+                    </mat-option>
+                    <mat-option [value]="'36 Minutes'">
+                      36 Minutes
+                    </mat-option>
+                    <mat-option [value]="'37 Minutes'">
+                      37 Minutes
+                    </mat-option>
+                    <mat-option [value]="'38 Minutes'">
+                      38 Minutes
+                    </mat-option>
+                    <mat-option [value]="'39 Minutes'">
+                      39 Minutes
+                    </mat-option>
+                    <mat-option [value]="'40 Minutes'">
+                      40 Minutes
+                    </mat-option>
+                    <mat-option [value]="'41 Minutes'">
+                      41 Minutes
+                    </mat-option>
+                    <mat-option [value]="'42 Minutes'">
+                      42 Minutes
+                    </mat-option>
+                    <mat-option [value]="'43 Minutes'">
+                      43 Minutes
+                    </mat-option>
+                    <mat-option [value]="'44 Minutes'">
+                      44 Minutes
+                    </mat-option>
+                    <mat-option [value]="'45 Minutes'">
+                      45 Minutes
+                    </mat-option>
+                    <mat-option [value]="'46 Minutes'">
+                      46 Minutes
+                    </mat-option>
+                    <mat-option [value]="'47 Minutes'">
+                      47 Minutes
+                    </mat-option>
+                    <mat-option [value]="'48 Minutes'">
+                      48 Minutes
+                    </mat-option>
+                    <mat-option [value]="'49 Minutes'">
+                      49 Minutes
+                    </mat-option>
+                    <mat-option [value]="'50 Minutes'">
+                      50 Minutes
+                    </mat-option>
+                    <mat-option [value]="'51 Minutes'">
+                      52 Minutes
+                    </mat-option>
+                    <mat-option [value]="'53 Minutes'">
+                      53 Minutes
+                    </mat-option>
+                    <mat-option [value]="'514 Minutes'">
+                      54 Minutes
+                    </mat-option>
+                    <mat-option [value]="'55 Minutes'">
+                      55 Minutes
+                    </mat-option>
+                    <mat-option [value]="'56 Minutes'">
+                      56 Minutes
+                    </mat-option>
+                    <mat-option [value]="'57 Minutes'">
+                      57 Minutes
+                    </mat-option>
+                    <mat-option [value]="'58 Minutes'">
+                      58 Minutes
+                    </mat-option>
+                    <mat-option [value]="'59 Minutes'">
+                      59 Minutes
+                    </mat-option>
+                    <mat-option [value]="'60 Minutes'">
+                      60 Minutes
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field fxFlex="100">
+                  <textarea matInput placeholder="Outcome" formControlName="outcome"></textarea>
+
+                </mat-form-field>
+
+              </div>
+
+
+              <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                <mat-form-field fxFlex="100">
+                  <mat-select placeholder="Complexity" formControlName="complexity" required>
+                    <mat-option [value]="'Low Complexity'">
+                      Low Complexity
+                    </mat-option>
+                    <mat-option [value]="'Medium Complexity'">
+                      Medium Complexity
+                    </mat-option>
+                    <mat-option [value]="'High Complexity'">
+                      High Complexity
+                    </mat-option>
+
+
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+
+              <input name="name" formControlName="name" matInput hidden>
+
+
+              <div>
+                <button mat-button matStepperPrevious>BACK</button>
+                <button mat-button (click)="ocsResetForm()">RESET
+                  <i class="material-icons">autorenew</i>
+                </button>
+
+                <button *ngIf="action !=='edit'" mat-raised-button (click)="onOcsSubmit(); dialogRef.close(visitForm)" [disabled]="ocsForm.invalid"
+                  aria-label="SAVE">
+                  SAVE
+                </button>
+
+
+              </div>
+            </form>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  <!-- end of stepper 4-->
+</div>
+<div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+  <button 
+    *ngIf="action ==='edit'" 
+    mat-button class="mat-icon-button" 
+    (click)="dialogRef.close(['delete',visitForm])" 
+    aria-label="Delete"
+    matTooltip="Delete">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+</div>
+`

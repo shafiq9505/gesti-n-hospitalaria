@@ -1,0 +1,64 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}" fusePerfectScrollbar>
+
+  <!-- DATE COLUMN -->
+  <ng-container cdkColumnDef="date">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Date</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+      <p class="font-weight-600">{{visitnote.date}}</p>
+    </mat-cell>
+  </ng-container>
+  <!-- /DATE COLUMN -->
+
+  <!-- BLOOD PRESSURE -->
+  <ng-container cdkColumnDef="bp">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Blood Pressure</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+      <p class="font-weight-600">
+        {{ visitnote.systolic }} / {{ visitnote.diastolic }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /BLOOD PRESSURE -->
+
+  <!-- HEIGHT -->
+  <ng-container cdkColumnDef="height">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Height</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+      <p class="font-weight-600">
+        {{ visitnote.height }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /HEIGHT -->
+
+  <!-- WEIGHT -->
+  <ng-container cdkColumnDef="weight">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Weight</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+      <p class="font-weight-600">
+        {{ visitnote.weight }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /WEIGHT -->
+
+  <!-- VISIT TEXT -->
+  <ng-container cdkColumnDef="visittext">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Doctor</mat-header-cell>
+    <mat-cell *cdkCellDef="let visitnote">
+        {{ visitnote.doctor }}
+    </mat-cell>
+  </ng-container>
+  <!-- /VISIT TEXT -->
+
+  <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row 
+    *cdkRowDef="let visitnote; columns: displayColumns;" 
+    [routerLink]="'./'+this.visitnote.guid"
+    class="visitnote" 
+    matRipple 
+    (click)="editVisitNote(visitnote)"
+    >
+  </mat-row>
+
+</mat-table>

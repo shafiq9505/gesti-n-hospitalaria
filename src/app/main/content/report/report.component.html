@@ -1,0 +1,93 @@
+<div id="patient" class="page-layout simple left-sidenav inner-sidenav">
+
+  <!-- HEADER -->
+  <div class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+    <!-- APP TITLE -->
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <!-- 
+      <button mat-button class="mat-icon-button sidenav-toggle mr-12" fuseMatSidenavToggler="patient-main-sidenav" fxHide.gt-md>
+        <mat-icon>menu</mat-icon>
+      </button> -->
+
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+          <div class="black-fg" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="secondary-text s-16">home</mat-icon>
+            <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+            <span class="secondary-text">Reports</span>
+          </div>
+          <div class="mt-8">
+            <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+            <span id="pagetitle" class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Reports</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- / APP TITLE -->
+  </div>
+  <!-- / HEADER -->
+
+  <!-- SELECTED BAR -->
+  <!-- <fuse-selected-bar class="mat-accent-600-bg" *ngIf="hasSelectedContacts" [@slideInTop]></fuse-selected-bar> -->
+  <!-- / SELECTED BAR -->
+
+  <mat-sidenav-container>
+
+    <!-- SIDENAV -->
+    <!-- <mat-sidenav class="sidenav" align="start" opened="true" mode="side" fuseMatSidenavHelper="patient-main-sidenav" mat-is-locked-open="gt-sm">
+
+
+    </mat-sidenav> -->
+    <!-- / SIDENAV -->
+
+    <!-- CENTER -->
+    <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+
+      <!-- CONTENT -->
+      <div class="content mat-white-bg mat-elevation-z4">
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="33">
+
+          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
+
+            <div class="p-16 pb-0" fxLayout="row" fxLayoutAlign="start end" fxLayoutWrap>
+
+              <div class="pr-16">
+                <div class="h2 secondary-text">Total Patient: {{ totalPatient }}</div>
+              </div>
+              <div class="pr-16">
+                <div class="h2 secondary-text">Total Self Harm: {{ totalSelfHarm }}</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+
+          <!-- CONTENT -->
+          <div class="content mat-white-bg mat-elevation-z4">
+
+            <app-timesheet-list></app-timesheet-list>
+
+          </div>
+          <!-- / CONTENT -->
+
+        </div>
+
+      </div>
+      <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+  </mat-sidenav-container>
+
+</div>
+<button mat-fab class="mat-accent-bg" id="add-contact-button" (click)="newTimesheet()" aria-label="add contact" *fuseIfOnDom
+  [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+  <mat-icon>lists</mat-icon>
+</button>

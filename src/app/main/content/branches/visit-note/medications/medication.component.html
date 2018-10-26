@@ -1,0 +1,43 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >
+
+<div class="dialog-content-wrapper">
+        <mat-toolbar matDialogTitle class="mat-accent m-0">
+                <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="title dialog-title">{{dialogTitle}}</span>
+                    <button mat-button class="mat-icon-button"
+                            (click)="dialogRef.close()"
+                            aria-label="Close dialog">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-toolbar-row> 
+        
+            </mat-toolbar>
+
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>  
+
+     
+      <table class="table table-sm ">
+    <tr>
+        <th>Medicine Name</th>
+        <th>Dosage</th>
+        <th>Duration</th>
+        <th>Frequency</th>
+        <th>Duration Unit</th>
+    </tr>
+    <tr *ngFor = "let medication of medicationlist">
+        <td>{{medication.name}}</td>
+        <td>{{medication.dosage}}</td>
+        <td>{{medication.duration}}</td>
+        <td>{{medication.frequency}}</td>
+        <td>{{medication.duration_unit}}</td>
+        <td></td>
+    </tr>
+        </table>
+
+                
+
+    </div>
+    </div>  
+    
+

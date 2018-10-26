@@ -1,0 +1,340 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">{{dialogTitle}}</span>
+    <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <div mat-dialog-content class="-24 m0" fusePerfectScrollbar>
+   <div *ngIf="action == 'branch'">
+     <!-- REFER TO BRACHES -->
+    <form [formGroup]="referralForm">
+      <div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+    
+        <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+    
+          <div class="profile-box add-post">
+    
+            <div class="form" fxFlex>
+              <table>
+                <tr>
+                  <td>Patient Name:</td>
+                  <td>{{ patientInfo.fname + ' ' + patientInfo.lname }}</td>
+                </tr>
+                <tr>
+                  <td>IC No:</td>
+                  <td>{{ patientInfo.ic }}</td>
+                </tr>
+                <tr>
+                  <td>Date of Birth:</td>
+                  <td>{{ patientInfo.birthday }}</td>
+                </tr>
+                <tr>
+                  <td>Age:</td>
+                  <td>{{ patientInfo.age }}</td>
+                </tr>
+                <tr>
+                  <td>Race:</td>
+                  <td>{{ patientInfo.ethnic }}</td>
+                </tr>
+                <tr>
+                  <td>Religion:</td>
+                  <td>{{ patientInfo.religion }}</td>
+                </tr>
+                <tr>
+                  <td>Citizenship:</td>
+                  <td>{{ patientInfo.citizen }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <hr>
+          <div class="content" fxLayout="row">
+            <div class="activities">
+              <div fxLayout="column">
+                  <mat-form-field>
+                    <mat-select placeholder="Select Branch to Refer" [(ngModel)]="selectedBranch" (change)="getSelectedBranch()" [ngModelOptions]="{standalone: true}" required>
+                      <mat-option *ngFor="let branch of referral" [value]="branch.id">
+                        {{ branch.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </div>
+            </div>
+            <hr>
+        </div>
+        <div *ngIf="selectedBranchDetail != null">
+          <h4>Location:</h4>
+          <table>
+            <tr>
+              <td>
+                  <h4>Name:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_name" [value]="selectedBranchDetail.name" type="text" placeholder="Location Name" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Address:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_address" [value]="selectedBranchDetail.address" type="text" placeholder="Location Address" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Postcode:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_postcode" [value]="selectedBranchDetail.postcode" type="text" placeholder="Location Postcode"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>City:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_city" [value]="selectedBranchDetail.city" type="text" placeholder="Location City" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>State:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_state" [value]="selectedBranchDetail.state" type="text" placeholder="Location State" />
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div>
+        <div class="timeline-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="45" fxFlex.gt-md="35">
+    
+          <div class="profile-box latest-activity" fxLayout="column">
+    
+            <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="title">Forms</div>
+            </header>
+    
+            <div class="content" fxLayout="row" fxLayoutWrap>
+              <div class="activities">
+                <div fxLayout="column">
+                  <h4>Admitted Date:</h4>
+                  <input name="dateAdmitted" type="date" formControlName="dateAdmitted" placeholder="Date of Admitted" required/>
+                  <mat-divider></mat-divider>
+                  
+                  <h4>Discharge Date:</h4>
+                  <input name="dateDiscard" type="date" formControlName="dateDiscard" placeholder="Date of Discharge" required/>
+                  <mat-divider></mat-divider>
+
+                  <h4>Diagnosis/Problems:</h4>
+                  <input name="problems" type="text" formControlName="problems" placeholder="Patient's Diagnosis/Problems" />
+                  <mat-divider></mat-divider>
+                  
+                  <h4>Reasons For Referral:</h4>
+                  <input name="reasons" type="text" formControlName="reasons" placeholder="Doctor's Reasons for Referral" />
+                  <mat-divider></mat-divider>
+                  
+                  <h4>History:</h4>
+                  <input name="history" type="text" formControlName="history" placeholder="Patient's History" />
+                  <mat-divider></mat-divider>
+
+                  <h4>Examinations:</h4>
+                  <input name="examinations" type="text" formControlName="examinations" placeholder="Patient's Examinations" />
+                  <mat-divider></mat-divider>
+
+                  <h4>Investgation:</h4>
+                  <input name="investigation" type="text" formControlName="investigation" placeholder="Doctor's Investigations" />
+                  <mat-divider></mat-divider>
+
+                  <h4>Summary of Management:</h4>
+                  <textarea name="managementSummary" type="text" formControlName="summary" placeholder="Doctor's Summary of Management">
+                  </textarea>
+                  <mat-divider></mat-divider>
+                  
+                  <h4>Other Comments:</h4>
+                  <textarea name="managementSummary" type="text" formControlName="comments" placeholder="Any Other Comments">
+                  </textarea>
+                  <mat-divider></mat-divider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    
+      <button  mat-raised-button (click)="dialogRef.close(['branch',selectedBranchDetail,referralForm.value])" class="save-button mat-accent" aria-label="SAVE">
+        SAVE
+      </button>
+
+    </div>
+   <!-- /REFER TO BRACHES -->
+   </div>
+
+   <div *ngIf="action == 'others'">
+     <!-- REFER TO OTHERS -->
+    <form [formGroup]="referralForm">
+      <div id="timeline" class="p-24" fxLayout="row" fxLayoutWrap>
+    
+        <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="55" fxFlex.gt-md="65">
+    
+          <div class="profile-box add-post">
+    
+            <div class="form" fxFlex>
+              <table>
+                <tr>
+                  <td>Patient Name:</td>
+                  <td>{{ patientInfo.fname + ' ' + patientInfo.lname }}</td>
+                </tr>
+                <tr>
+                  <td>IC No:</td>
+                  <td>{{ patientInfo.ic }}</td>
+                </tr>
+                <tr>
+                  <td>Date of Birth:</td>
+                  <td>{{ patientInfo.birthday }}</td>
+                </tr>
+                <tr>
+                  <td>Age:</td>
+                  <td>{{  patientInfo.age  }}</td>
+                </tr>
+                <tr>
+                  <td>Race:</td>
+                  <td>{{ patientInfo.ethnic }}</td>
+                </tr>
+                <tr>
+                  <td>Religion:</td>
+                  <td>{{ patientInfo.religion }}</td>
+                </tr>
+                <tr>
+                  <td>Citizenship:</td>
+                  <td>{{ patientInfo.citizen }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <hr>
+          
+          <h4>Location Patient Referred To:</h4>
+          <table>
+            <tr>
+              <td>Doctor Name</td>
+              <td>
+                <input matInput name="doc_name" formControlName="doc_name" type="text" placeholder="Doctor Name" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Doctor's Department
+              </td>
+              <td>
+                <input matInput name="doc_department" formControlName="doc_department" type="text" placeholder="Doctor's Department" required/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Place Name:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_name" formControlName="loct_name"  type="text" placeholder="Location Name" required/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Address:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_address"  formControlName="loct_address" type="text" placeholder="Location Address" required/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Postcode:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_postcode" formControlName="loct_postcode" type="text" placeholder="Location Postcode" required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>City:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_city" formControlName="loct_city" type="text" placeholder="Location City" required/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>State:</h4>
+              </td>
+              <td>
+                <input matInput name="loct_state"  formControlName="loct_state" type="text" placeholder="Location State" required/>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="timeline-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="45" fxFlex.gt-md="35">
+    
+          <div class="profile-box latest-activity" fxLayout="column">
+    
+            <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="title">Forms</div>
+            </header>
+    
+            <div class="content" fxLayout="row" fxLayoutWrap>
+              <div class="activities">
+                <div fxLayout="column">
+                  <h4>Admitted Date:</h4>
+                  <input name="dateAdmitted" type="date" formControlName="dateAdmitted" placeholder="Date of Admitted" required/>
+                  <mat-divider></mat-divider>
+                  
+                  <h4>Discharge Date:</h4>
+                  <input name="dateDiscard" type="date" formControlName="dateDiscard" placeholder="Date of Discharge" required/>
+                  <mat-divider></mat-divider>
+
+                  <h4>Diagnosis/Problems:</h4>
+                  <input name="problems" type="text" formControlName="problems" placeholder="Patient's Diagnosis/Problems" />
+                  <mat-divider></mat-divider>
+                
+                  <h4>Reasons For Referral:</h4>
+                  <input name="reasons" type="text" formControlName="reasons" placeholder="Doctor's Reasons for Referral" />
+                  <mat-divider></mat-divider>
+                
+                  <h4>History:</h4>
+                  <input name="history" type="text" formControlName="history" placeholder="Patient's History" />
+                  <mat-divider></mat-divider>
+                
+                  <h4>Examinations:</h4>
+                  <input name="examinations" type="text" formControlName="examinations" placeholder="Patient's Examinations" />
+                  <mat-divider></mat-divider>
+                
+                  <h4>Investgation:</h4>
+                  <input name="investigation" type="text" formControlName="investigation" placeholder="Doctor's Investigations" />
+                  <mat-divider></mat-divider>
+                
+                  <h4>Summary of Management:</h4>
+                  <textarea name="managementSummary" type="text" formControlName="summary" placeholder="Doctor's Summary of Management"></textarea>
+                  <mat-divider></mat-divider>
+                
+                  <h4>Other Comments:</h4>
+                  <textarea name="managementSummary" type="text" formControlName="comments" placeholder="Any Other Comments"></textarea>
+                  <mat-divider></mat-divider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <button mat-raised-button (click)="dialogRef.close(['other',referralForm.value])" class="save-button mat-accent" aria-label="SAVE">
+      SAVE
+    </button>
+    </form>
+
+   </div>
+   <!-- /REFER TO OTHERS -->
+  </div>
+</div>

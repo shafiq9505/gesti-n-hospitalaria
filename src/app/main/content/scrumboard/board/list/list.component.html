@@ -1,0 +1,44 @@
+<div class="list mat-elevation-z1" fxLayout="column">
+
+    <!-- LIST HEADER -->
+    <div class="list-header" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+        <fuse-scrumboard-board-edit-list-name
+            fxFlex="1 0 auto"
+            [list]="list"
+            (onNameChanged)="onListNameChanged($event)">
+        </fuse-scrumboard-board-edit-list-name>
+
+    </div>
+    <!-- / LIST HEADER -->
+
+    <!-- LIST CONTENT -->
+    <div class="list-content" fxLayout="column">
+
+        <div class="list-cards ngx-dnd-container"
+             [model]="list.idCards" ngxDroppable="card" (out)="onDrop($event)"
+             fusePerfectScrollbar #listScroll>
+            <fuse-scrumboard-board-card ngxDraggable
+                                        (click)="openCardDialog(cardId)"
+                                        class="scrumboard-board-card mat-elevation-z2 ngx-dnd-item"
+                                        *ngFor="let cardId of list.idCards"
+                                        [model]="cardId"
+                                        [board]="board"
+                                        [cardId]="cardId">
+            </fuse-scrumboard-board-card>
+        </div>
+    </div>
+    <!-- / LIST CONTENT -->
+
+    <!-- NEW CARD BUTTON-->
+    <div class="list-footer" >
+        <fuse-scrumboard-board-add-card (onCardAdd)="onCardAdd($event)">
+        </fuse-scrumboard-board-add-card>
+        <!-- <button mat-raised-button>
+          <mat-icon>add</mat-icon>
+          Question
+        </button>         -->
+    </div>
+    <!-- / NEW CARD BUTTON-->
+
+</div>

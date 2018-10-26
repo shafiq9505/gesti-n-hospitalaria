@@ -1,0 +1,140 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <form name="eventForm" [formGroup]="eventForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+
+            <mat-form-field class="w-100-p">
+                <input matInput
+                       name="title"
+                       formControlName="title"
+                       placeholder="Title"
+                       required>
+            </mat-form-field>
+            
+            <div class="py-16" fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row" formGroupName="color">
+                
+            </div>
+
+            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+
+                <mat-form-field class="mr-sm-24" fxFlex>
+                    <input matInput [matDatepicker]="startDatePicker" placeholder="Date start"
+                           name="start"
+                           formControlName="start">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="no-errors-spacer" fxFlex mat-no-float>
+                    <input matInput
+                    type="time"
+                    name="hourStart"
+                    formControlName="hourStart"
+                    placeholder="Start hour">
+                </mat-form-field>
+
+                <!-- RADIO -->
+                <!-- <mat-radio-group (change)="setHour('start',$event)" >                                
+                    <mat-radio-button value="am" >am</mat-radio-button>
+                    <mat-radio-button value="pm" >pm</mat-radio-button>                                
+                </mat-radio-group> -->
+                <!-- /RADIO -->
+
+            </div>
+
+            <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+
+                <mat-form-field class="mr-sm-24" fxFlex>
+                    <input matInput [matDatepicker]="endDatePicker" placeholder="End Date"
+                           name="end"
+                           formControlName="end">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="no-errors-spacer" fxFlex mat-no-float>
+                        <input matInput
+                        type="time"
+                        name="hourEnd"
+                        formControlName="hourEnd"
+                        placeholder="Time end">
+                </mat-form-field>
+                    
+                <!-- RADIO -->
+                <!-- <mat-radio-group (change)="setHour('end',$event)">                                
+                    <mat-radio-button value="am" >am</mat-radio-button>
+                    <mat-radio-button value="pm" >pm</mat-radio-button>
+                </mat-radio-group> -->
+                <!-- /RADIO -->
+
+            </div>
+
+            <mat-form-field class="w-100-p">
+
+                <input matInput
+                name="doctor"
+                formControlName="doctor"
+                placeholder="Doctor">
+                
+            </mat-form-field>
+
+            <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}">
+                    <!-- DR APPOINTMENT -->
+                    <ng-container cdkColumnDef="appoint" >
+                        <mat-header-cell *cdkHeaderCellDef>Appointments</mat-header-cell>
+                        <mat-cell *cdkCellDef="let appointment"> 
+                            <p class="font-weight-600"> {{ appointment.start | date : "fullDate" }} {{appointment.start | date : "shortTime"}}</p>
+                        </mat-cell>
+                    </ng-container>
+                    <!-- /DR APPOINTMENT -->
+                    <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+                    <mat-row *cdkRowDef="let das; columns: displayColumns;" class="das" ></mat-row>
+                </mat-table>
+
+        </form>
+
+        
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button *ngIf="action !=='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(eventForm)"
+                class="save-button mat-accent"
+                [disabled]="eventForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(['save',eventForm])"
+                class="save-button mat-accent"
+                [disabled]="eventForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-button
+                class="mat-icon-button"
+                (click)="dialogRef.close(['delete',eventForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>

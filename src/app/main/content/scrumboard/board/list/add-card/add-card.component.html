@@ -1,0 +1,189 @@
+<div *ngIf="!formActive" class="add-card-button"
+     fxLayout="row" fxLayoutAlign="start center">
+    <!-- <div>
+        <mat-icon class="s-20">add</mat-icon>
+    </div>
+    <span>Add a card</span> -->
+    <mat-form-field floatPlaceholder="never">
+      <mat-select placeholder="Select Question Type" [(ngModel)]="questiontype">
+        <mat-option *ngFor="let questionType of QuestionTypes" [value]="questionType.value" >
+          {{ questionType.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="openForm()"><mat-icon>add</mat-icon>Add</button>
+
+</div>
+
+<div *ngIf="formActiveSubjective" class="add-card-form-wrapper">
+
+    <form [formGroup]="form" class="add-card-form" fxLayout="column" (ngSubmit)="onFormSubmit(questiontype)" #qform="ngForm">
+
+        <mat-form-field fxFlex floatPlaceholder="never">
+            <input #nameInput matInput formControlName="name" placeholder="Subjective" autocomplete="off" required>
+            <mat-error *ngIf="name.errors?.required">
+              Please enter a question
+            </mat-error>
+            <mat-error *ngIf="name.errors?.minlength">
+              Your question is too short
+            </mat-error>
+        </mat-form-field>
+
+        <div class="pl-8" fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-button type="submit"><mat-icon>add</mat-icon>Add</button>
+            <button mat-icon-button (click)="closeForm(questiontype)" class="cancel-button" aria-label="cancel">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<div *ngIf="formActiveMultipleChoice" class="add-card-form-wrapper">
+
+    <form [formGroup]="form" class="add-card-form" fxLayout="column" (ngSubmit)="onFormSubmit(questiontype)" #qform="ngForm">
+
+        <mat-form-field fxFlex >
+            <input #nameInput matInput formControlName="name" placeholder="Multiple Choice" autocomplete="off">
+            <mat-error *ngIf="name.errors?.required">
+              Please enter a question
+            </mat-error>
+            <mat-error *ngIf="name.errors?.minlength">
+              Your question is too short
+            </mat-error>
+
+        </mat-form-field>
+
+        <div formArrayName="itemRows">
+            <!-- Check the correct way to iterate your form array -->
+            <div *ngFor="let itemrow of form.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+              <h4>Choice #{{ i + 1 }}</h4>
+              <mat-form-field fxFlex >
+                <input matInput formControlName="itemname" class="form-control" placeholder="Choice description" autocomplete="off">
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.required">
+                  This is required
+                </mat-error>
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.minlength">
+                  Minimum 4 characters required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="score">
+                <input matInput formControlName="score" class="form-control" type="number" placeholder="Score" autocomplete="off">
+              </mat-form-field>
+              <button *ngIf="form.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><mat-icon>delete</mat-icon></button>
+
+            </div>
+          </div>
+          <button mat-button type="button" (click)="addNewRow()" color="primary">Add New Choice</button>
+
+        <div class="pl-8" fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-button type="submit"><mat-icon>add</mat-icon>Add</button>
+            <button mat-icon-button (click)="closeForm(questiontype)" class="cancel-button" aria-label="cancel">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<div *ngIf="formActiveCheckbox" class="add-card-form-wrapper">
+
+    <form [formGroup]="form" class="add-card-form" fxLayout="column" (ngSubmit)="onFormSubmit(questiontype)" #qform="ngForm">
+
+        <mat-form-field fxFlex >
+            <input #nameInput matInput formControlName="name" placeholder="Multiple Choice" autocomplete="off">
+            <mat-error *ngIf="name.errors?.required">
+              Please enter a question
+            </mat-error>
+            <mat-error *ngIf="name.errors?.minlength">
+              Your question is too short
+            </mat-error>
+
+        </mat-form-field>
+
+        <div formArrayName="itemRows">
+            <!-- Check the correct way to iterate your form array -->
+            <div *ngFor="let itemrow of form.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+              <h4>Checkbox #{{ i + 1 }}</h4>
+              <mat-form-field fxFlex >
+                <input matInput formControlName="itemname" class="form-control" placeholder="Choice description" autocomplete="off">
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.required">
+                  This is required
+                </mat-error>
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.minlength">
+                  Minimum 4 characters required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="score">
+                <input matInput formControlName="score" class="form-control" type="number" placeholder="Score" autocomplete="off">
+              </mat-form-field>
+              <button *ngIf="form.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><mat-icon>delete</mat-icon></button>
+
+            </div>
+          </div>
+          <button mat-button type="button" (click)="addNewRow()" color="primary">Add New Checkbox</button>
+
+        <div class="pl-8" fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-button type="submit"><mat-icon>add</mat-icon>Add</button>
+            <button mat-icon-button (click)="closeForm(questiontype)" class="cancel-button" aria-label="cancel">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<div *ngIf="formActiveScale" class="add-card-form-wrapper">
+
+    <form [formGroup]="form" class="add-card-form" fxLayout="column" (ngSubmit)="onFormSubmit(questiontype)" #qform="ngForm">
+
+        <mat-form-field fxFlex >
+            <input #nameInput matInput formControlName="name" placeholder="Multiple Choice" autocomplete="off">
+            <mat-error *ngIf="name.errors?.required">
+              Please enter a question
+            </mat-error>
+            <mat-error *ngIf="name.errors?.minlength">
+              Your question is too short
+            </mat-error>
+
+        </mat-form-field>
+
+        <div formArrayName="itemRows">
+            <!-- Check the correct way to iterate your form array -->
+            <div *ngFor="let itemrow of form.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+              <h4>Scale #{{ i + 1 }}</h4>
+              <mat-form-field fxFlex >
+                <input matInput formControlName="itemname" class="form-control" placeholder="Choice description" autocomplete="off">
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.required">
+                  This is required
+                </mat-error>
+                <mat-error *ngIf="itemRows.controls[i].controls['itemname'].errors?.minlength">
+                  Minimum 4 characters required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="score">
+                <input matInput formControlName="score" class="form-control" type="number" placeholder="Score" autocomplete="off">
+              </mat-form-field>
+              <button *ngIf="form.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><mat-icon>delete</mat-icon></button>
+
+            </div>
+          </div>
+          <button mat-button type="button" (click)="addNewRow()" color="primary">Add New Scale</button>
+
+        <div class="pl-8" fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-button type="submit"><mat-icon>add</mat-icon>Add</button>
+            <button mat-icon-button (click)="closeForm(questiontype)" class="cancel-button" aria-label="cancel">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+    </form>
+
+</div>

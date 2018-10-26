@@ -1,0 +1,94 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar *ngIf="card" matDialogTitle class="mat-accent-bg m-0">
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+
+
+                <!-- OPTIONS -->
+                <div class="options " fxFlex="0 1 auto">
+                    <button mat-icon-button class="" [matMenuTriggerFor]="optionsMenu">
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #optionsMenu="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="removeCard()">
+                            Remove Card
+                        </button>
+                    </mat-menu>
+                </div>
+                <!-- / OPTIONS -->
+            </div>
+
+            <!-- CLOSE DIALOG BUTTON -->
+            <button mat-icon-button (click)="dialogRef.close()" aria-label="Close Dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+            <!-- / CLOSE DIALOG BUTTON -->
+        </div>
+    </mat-toolbar>
+
+    <div *ngIf="card" mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <div fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center"
+             fxLayout="column" fxLayoutAlign="center center">
+
+            <!-- BREADCRUMB -->
+            <div class="card-breadcrumb mb-16 mb-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <span>{{board.name}}</span>
+                <mat-icon class="s-20">chevron_right</mat-icon>
+                <span>{{list.name}}</span>
+            </div>
+            <!-- / BREADCRUMB -->
+
+
+
+        </div>
+
+        <!-- NAME -->
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon *ngIf="card.subscribed" class="card-subscribe s-20 mr-12">remove_red_eye</mat-icon>
+            <div class="card-name">
+                <mat-form-field floatPlaceholder="never" fxFlex>
+                    <input matInput [(ngModel)]="card.name" placeholder="Title" required (change)="updateCard()">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- / NAME -->
+
+        <!-- SECTIONS -->
+
+        <!-- <div class="sections"  *ngIf="card.type == 'subjective'">
+                <mat-form-field fxFlex>
+                    <textarea matInput [(ngModel)]="card.description" placeholder="Subjective answer" columns="1" mat-maxlength="150" max-rows="4" (change)="updateCard()"></textarea>
+                </mat-form-field>
+        </div> -->
+        <div class="sections" *ngIf="card.type == 'multiplechoice'">
+          <div *ngFor="let item of card.itemRows; let i = index">
+              <mat-form-field fxFlex>
+                  <input matInput [(ngModel)]="item.itemname" [placeholder]="'Choice ' + (i+1)" columns="1" mat-maxlength="150" max-rows="4" (change)="updateCard()">
+              </mat-form-field>
+          </div>
+        </div>
+
+        <div class="sections" *ngIf="card.type == 'checkbox'">
+          <div *ngFor="let item of card.itemRows; let i = index">
+              <mat-form-field fxFlex>
+                  <input matInput [(ngModel)]="item.itemname" [placeholder]="'Checkbox ' + (i+1)" columns="1" mat-maxlength="150" max-rows="4" (change)="updateCard()">
+              </mat-form-field>
+          </div>
+        </div>
+
+        <div class="sections" *ngIf="card.type == 'scale'">
+          <div *ngFor="let item of card.itemRows; let i = index">
+              <mat-form-field fxFlex>
+                  <input matInput [(ngModel)]="item.itemname" [placeholder]="'Scale ' + (i+1)" columns="1" mat-maxlength="150" max-rows="4" (change)="updateCard()">
+              </mat-form-field>
+          </div>
+        </div>
+
+
+        <!-- / SECTIONS -->
+    </div>
+</div>

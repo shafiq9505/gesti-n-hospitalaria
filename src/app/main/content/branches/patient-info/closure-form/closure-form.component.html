@@ -1,0 +1,66 @@
+<mat-card>
+ <div class="dialog-content-wrapper">
+   <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+     <span class="title dialog-title" align="center"><strong><font size=4>CLOSURE FORM</font></strong></span>
+     <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+       <mat-icon>close</mat-icon>
+     </button>
+   </mat-toolbar-row>
+
+   <div mat-dialog-content class="-24 m0" fusePerfectScrollbar>
+       <form [formGroup]="closureForm" autocomplete="off">
+
+         <p>Closure Checklist:</p>
+          <div>
+            <li>
+              <ul style="list-style-type:none;" *ngFor="let checklist of checklists">
+                <mat-checkbox type="checkbox" [value]="checklist" required style="display:block;">
+                  {{checklist}}
+                </mat-checkbox>
+              </ul>
+            </li>
+            
+            <br>
+          </div>
+         
+         <p>Follow up Arrangements:</p>
+           <textarea matInput placeholder="Please state" formControlName="followup" required></textarea>
+         <br>
+
+         <p>Reason for Closure:</p>
+           <mat-select placeholder="Select one" formControlName="reasonofclosure" required>
+             <mat-option>Please select</mat-option>
+             <mat-option value="Completed treatment">Completed treatment</mat-option>
+             <mat-option value="Defaulted follow up after tracing">Defaulted follow up after tracing</mat-option>
+             <mat-option value="Referred to other health care centre">Referred to other health care centre</mat-option>
+             <mat-option value="Refused continuation of mental health intervention">Refused continuation of mental health intervention</mat-option>
+             <mat-option value="Death">Death</mat-option>
+             <mat-option value="Suicide">Suicide</mat-option>
+             <mat-option value="Others; specify">Others; specify</mat-option>
+           </mat-select><br>
+
+         <p>Comments about Reason for Collection (Optional):</p>
+         <textarea matInput placeholder="Please leave your comment here" formControlName="reasonofclosure" required></textarea>
+         <br>
+
+         <p>Case Summary:</p>
+         <textarea matInput placeholder="Please state" formControlName="casesummary" required></textarea>
+         <br>
+
+       </form>
+     </div>
+
+       <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+         <button *ngIf="action !=='edit'" mat-raised-button (click)="dialogRef.close(closureForm)" class="save-button mat-accent"
+           aria-label="SAVE" [formControl]="disableClosure">
+           SAVE
+         </button>
+         <!-- function non-existent -->
+         <!-- <button mat-menu-item aria-label="remove" (click)="deleteClosure(closureForm)">
+           <mat-icon>delete</mat-icon>
+           <span>Remove</span>
+         </button> -->
+       </div>
+     </div>
+   </mat-card>

@@ -1,0 +1,873 @@
+<div id="forms" class="page-layout simple fullwidth" fxLayout="column" fusePerfectScrollbar>
+
+  <!-- HEADER -->
+  <div class="header mat-accent-bg p-24 h-160" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="secondary-text s-16">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">User Interface</span>
+      </div>
+      <div class="h1 mt-16">Welcome to BE HAPPY</div>
+    </div>
+  </div>
+  <!-- / HEADER -->
+
+  <!-- CONTENT -->
+  <div class="content p-24">
+
+    <div class="h1">
+      Registration Form
+    </div>
+
+    <p class="pt-16 pb-32">
+      *** Please fill in the form below. Thank You! ***
+    </p>
+
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+
+      <form class="mat-white-bg mat-elevation-z4 p-24 mr-24 mb-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form" [formGroup]="form">
+
+        <div class="h2 mb-24">PATIENT'S DEMOGRAPHIC</div>
+
+        <div class="agile-form">
+
+            <ul class="field-list">
+              <li class="name">
+
+
+                    Patient's Name:&emsp;&emsp;
+                    <mat-form-field>
+                        <input matInput placeholder="First Name" formControlName="firstName">
+                        <mat-error *ngIf="formErrors.firstName.required">
+                            First Name is required!
+                        </mat-error>
+                      </mat-form-field> &emsp;
+                        <mat-form-field>
+                        <input matInput placeholder="Last Name" formControlName="lastName">
+                        <mat-error *ngIf="formErrors.lastName.required">
+                            Last Name is required!
+                        </mat-error>
+                    </mat-form-field><br>
+
+              <div class="form-group">
+                <label class="form-label"><font size="2">Identification Document Type: </font><span class="form-required"> * </span></label><br>
+                <div class="col-sm-9">
+                  <div class="checkbox">
+                    <label class="checkbox-inline">
+                            <input type="checkbox" id="oldicCheckbox" value="Old IC"><font size="2">&emsp;Old IC &emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&nbsp;(Please state)
+                            <input type="text" id="oldicValue" name="old IC">
+                        </font></label><br>
+                    <div class="checkbox">
+                      <label class="checkbox-inline">
+                            <input type="checkbox" id="newicCheckbox" value="New IC"><font size="2">&emsp;New IC &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;(Please state)
+                            <input type="text" id="newicValue" name="new IC">
+                        </font></label><br>
+                      <div class="checkbox">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="armyCheckbox" value="Army"><font size="2">&emsp;Army &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;(Please state)
+                            <input type="text" id="armyValue" name="army">
+                        </font></label><br>
+                        <div class="checkbox">
+                          <label class="checkbox-inline">
+                            <input type="checkbox" id="policeCheckbox" value="Police"><font size="2">&emsp;Police &emsp;&emsp;&emsp;&emsp;&emsp;(Please state)
+                            <input type="text" id="policeValue" name="police">
+                        </font></label><br>
+                          <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="mumicCheckbox" value="Mother's IC"><font size="2">&emsp;Mother's IC &emsp;&emsp;&ensp;&nbsp;(Please state)
+                            <input type="text" id="mumicValue" name="mother's ic">
+                        </font></label><br>
+                          <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="dadicCheckbox" value="Father's IC"><font size="2">&emsp;Father's IC &emsp;&emsp;&emsp;(Please state)
+                            <input type="text" id="dadicValue" name="father's ic">
+                        </font></label><br>
+                         <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="workpermitCheckbox" value="Work Permit"><font size="2">&emsp;Work Permit &emsp;&emsp;&nbsp;(Please state)
+                            <input type="text" id="workpermitValue" name="work permit">
+                        </font></label><br>
+                          <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="passportCheckbox" value="Passport"><font size="2">&emsp;Passport &emsp;&emsp;&emsp;&ensp;&nbsp;(Please state)
+                            <input type="text" id="passportValue" name="passport">
+                        </font></label><br>
+                          <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="birthcertCheckbox" value="Birth Certificate"><font size="2">&emsp;Birth Certificate &emsp;(Please state)
+                            <input type="text" id="birthcertValue" name="birth certificate">
+                        </font></label><br>
+                          <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="pensionCheckbox" value="Pension Card"><font size="2">&emsp;Pension Card &emsp;&emsp;(Please state)
+                            <input type="text" id="pensionValue" name="pension card">
+                        </font></label><br>
+                            <div class="checkbox">
+                            <label class="checkbox-inline">
+                            <input type="checkbox" id="otherCheckbox" value="Other"><font size="2">&emsp;Other &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;(Please state)
+                            <input type="text" id="otherValue" name="other">
+                        </font></label><br>
+                          </div><br><br>
+                        </div>
+                      </div>
+                    </div>
+          <li>
+            <label class="form-label"><font size="2"> Date of Birth: </font> <span class="form-required"> * </span></label>
+            <div class="form-input dob">
+              <span class="form-sub-label">
+									<select name="day" class="day" required>
+										<option>Day</option>
+										<option value="1"> 1 </option>
+										<option value="2"> 2 </option>
+										<option value="3"> 3 </option>
+										<option value="4"> 4 </option>
+										<option value="5"> 5 </option>
+										<option value="6"> 6 </option>
+										<option value="7"> 7 </option>
+										<option value="8"> 8 </option>
+										<option value="9"> 9 </option>
+										<option value="10"> 10 </option>
+										<option value="11"> 11 </option>
+										<option value="12"> 12 </option>
+										<option value="13"> 13 </option>
+										<option value="14"> 14 </option>
+										<option value="15"> 15 </option>
+										<option value="16"> 16 </option>
+										<option value="17"> 17 </option>
+										<option value="18"> 18 </option>
+										<option value="19"> 19 </option>
+										<option value="20"> 20 </option>
+										<option value="21"> 21 </option>
+										<option value="22"> 22 </option>
+										<option value="23"> 23 </option>
+										<option value="24"> 24 </option>
+										<option value="25"> 25 </option>
+										<option value="26"> 26 </option>
+										<option value="27"> 27 </option>
+										<option value="28"> 28 </option>
+										<option value="29"> 29 </option>
+										<option value="30"> 30 </option>
+										<option value="31"> 31 </option>
+									</select>
+								</span>
+              <span class="form-sub-label">
+									<select name="month" required>
+										<option>Month</option>
+										<option value="January"> January </option>
+										<option value="February"> February </option>
+										<option value="March"> March </option>
+										<option value="April"> April </option>
+										<option value="May"> May </option>
+										<option value="June"> June </option>
+										<option value="July"> July </option>
+										<option value="August"> August </option>
+										<option value="September"> September </option>
+										<option value="October"> October </option>
+										<option value="November"> November </option>
+										<option value="December"> December </option>
+									 </select>
+								</span>
+              <span class="form-sub-label">
+									<select name="year" required>
+										<option>Year</option>
+                    <option value="1900"> 1900 </option>
+										<option value="1900"> 1901 </option>
+										<option value="1900"> 1902 </option>
+										<option value="1900"> 1903 </option>
+										<option value="1900"> 1904 </option>
+										<option value="1900"> 1905 </option>
+										<option value="1900"> 1906 </option>
+										<option value="1900"> 1907 </option>
+                    <option value="1900"> 1908 </option>
+										<option value="1900"> 1909 </option>
+										<option value="1900"> 1910 </option>
+										<option value="1900"> 1911 </option>
+										<option value="1900"> 1912 </option>
+										<option value="1900"> 1913 </option>
+										<option value="1900"> 1914 </option>
+										<option value="1900"> 1915 </option>
+										<option value="1900"> 1916 </option>
+										<option value="1900"> 1917 </option>
+										<option value="1900"> 1918 </option>
+										<option value="1900"> 1919 </option>
+										<option value="1900"> 1920 </option>
+										<option value="1900"> 1921 </option>
+										<option value="1900"> 1922 </option>
+										<option value="1900"> 1923 </option>
+										<option value="1900"> 1924 </option>
+										<option value="1900"> 1925 </option>
+										<option value="1900"> 1926 </option>
+										<option value="1900"> 1927 </option>
+										<option value="1900"> 1928 </option>
+										<option value="1900"> 1929 </option>
+                    <option value="1900"> 1930 </option>
+										<option value="1900"> 1931 </option>
+										<option value="1900"> 1932 </option>
+										<option value="1900"> 1933 </option>
+										<option value="1900"> 1934 </option>
+										<option value="1900"> 1935 </option>
+										<option value="1900"> 1936 </option>
+										<option value="1900"> 1937 </option>
+                    <option value="1900"> 1938 </option>
+										<option value="1900"> 1939 </option>
+                    <option value="1900"> 1940 </option>
+										<option value="1900"> 1941 </option>
+										<option value="1900"> 1942 </option>
+										<option value="1900"> 1943 </option>
+										<option value="1900"> 1944 </option>
+										<option value="1900"> 1945 </option>
+										<option value="1900"> 1946 </option>
+										<option value="1900"> 1947 </option>
+                    <option value="1900"> 1948 </option>
+										<option value="1900"> 1949 </option>
+										<option value="1900"> 1940 </option>
+										<option value="1900"> 1941 </option>
+										<option value="1900"> 1942 </option>
+										<option value="1900"> 1943 </option>
+										<option value="1900"> 1944 </option>
+										<option value="1900"> 1945 </option>
+										<option value="1900"> 1946 </option>
+										<option value="1900"> 1947 </option>
+										<option value="1900"> 1948 </option>
+										<option value="1900"> 1949 </option>
+										<option value="1900"> 1950 </option>
+										<option value="1900"> 1951 </option>
+										<option value="1900"> 1952 </option>
+										<option value="1900"> 1953 </option>
+										<option value="1900"> 1954 </option>
+										<option value="1900"> 1955 </option>
+										<option value="1900"> 1956 </option>
+										<option value="1900"> 1957 </option>
+										<option value="1900"> 1958 </option>
+										<option value="1900"> 1959 </option>
+                    <option value="1900"> 1960 </option>
+										<option value="1900"> 1961 </option>
+										<option value="1900"> 1962 </option>
+										<option value="1900"> 1963 </option>
+										<option value="1900"> 1964 </option>
+										<option value="1900"> 1965 </option>
+										<option value="1900"> 1966 </option>
+										<option value="1900"> 1967 </option>
+                    <option value="1900"> 1968 </option>
+										<option value="1900"> 1969 </option>
+										<option value="1900"> 1970 </option>
+										<option value="1900"> 1971 </option>
+										<option value="1900"> 1972 </option>
+										<option value="1900"> 1973 </option>
+										<option value="1900"> 1974 </option>
+										<option value="1900"> 1975 </option>
+										<option value="1900"> 1976 </option>
+										<option value="1900"> 1977 </option>
+										<option value="1900"> 1978 </option>
+										<option value="1900"> 1979 </option>
+										<option value="1900"> 1980 </option>
+										<option value="1900"> 1981 </option>
+										<option value="1900"> 1982 </option>
+										<option value="1900"> 1983 </option>
+										<option value="1900"> 1984 </option>
+										<option value="1900"> 1985 </option>
+										<option value="1900"> 1986 </option>
+										<option value="1900"> 1987 </option>
+										<option value="1900"> 1988 </option>
+										<option value="1900"> 1989 </option>
+                    <option value="1900"> 1990 </option>
+										<option value="1900"> 1991 </option>
+										<option value="1900"> 1992 </option>
+										<option value="1900"> 1993 </option>
+										<option value="1900"> 1994 </option>
+										<option value="1900"> 1995 </option>
+										<option value="1900"> 1996 </option>
+										<option value="1900"> 1997 </option>
+										<option value="1900"> 1998 </option>
+										<option value="1900"> 1999 </option>
+										<option value="1900"> 2000 </option>
+										<option value="1900"> 2001 </option>
+										<option value="1900"> 2002 </option>
+										<option value="1900"> 2003 </option>
+										<option value="1900"> 2004 </option>
+										<option value="1900"> 2005 </option>
+										<option value="1900"> 2006 </option>
+										<option value="1900"> 2007 </option>
+										<option value="1900"> 2008 </option>
+										<option value="1900"> 2009 </option>
+										<option value="1900"> 2010 </option>
+										<option value="1900"> 2011 </option>
+										<option value="1900"> 2012 </option>
+										<option value="1900"> 2013 </option>
+										<option value="1900"> 2014 </option>
+										<option value="1900"> 2015 </option>
+										<option value="1900"> 2016 </option>
+										<option value="1900"> 2017 </option>
+										<option value="1900"> 2018 </option>
+                    <option value="1900"> 2019 </option>
+                    <option value="1900"> 2020 </option>
+                  </select><br><br>
+								</span>
+            </div>
+          </li>
+
+           <div class="form-group">
+            <label class="form-label"><font size="2">Occupation: </font><span class="form-required"> * </span></label><br>
+            <div class="col-sm-9">
+              <div class="checkbox">
+                <label class="checkbox-inline">
+                                <input type="checkbox" id="employedCheckbox" value="Employed"><font size="2">&emsp;Employed, &emsp;&emsp;
+                Please State:<input type="text" id="employedValue" name="employed">
+                            </font></label><br>
+                <div class="checkbox">
+                  <label class="checkbox-inline">
+                                <input type="checkbox" id="unemployedCheckbox" value="Unemployed"><font size="2">&emsp;Unemployed, &emsp;
+                Please State:<input type="text" id="unemployedValue" name="unemployed">
+                            </font></label>
+                </div><br>
+              </div>
+            </div>
+          </div>
+          <li>
+            <label class="form-label"><font size="2"> Age of Admission: </font> <span class="form-required"> * </span></label>
+            <div class="form-input dob">
+              <span class="form-sub-label">
+									<select name="year" class="year" required>
+										<option>Year</option>
+                    <option value="0"> 0 </option>
+										<option value="1"> 1 </option>
+										<option value="2"> 2 </option>
+										<option value="3"> 3 </option>
+										<option value="4"> 4 </option>
+										<option value="5"> 5 </option>
+										<option value="6"> 6 </option>
+										<option value="7"> 7 </option>
+										<option value="8"> 8 </option>
+										<option value="9"> 9 </option>
+										<option value="10"> 10 </option>
+										<option value="11"> 11 </option>
+										<option value="12"> 12 </option>
+										<option value="13"> 13 </option>
+										<option value="14"> 14 </option>
+										<option value="15"> 15 </option>
+										<option value="16"> 16 </option>
+										<option value="17"> 17 </option>
+										<option value="18"> 18 </option>
+										<option value="19"> 19 </option>
+										<option value="20"> 20 </option>
+										<option value="21"> 21 </option>
+										<option value="22"> 22 </option>
+										<option value="23"> 23 </option>
+										<option value="24"> 24 </option>
+										<option value="25"> 25 </option>
+										<option value="26"> 26 </option>
+										<option value="27"> 27 </option>
+										<option value="28"> 28 </option>
+										<option value="29"> 29 </option>
+										<option value="30"> 30 </option>
+										<option value="31"> 31 </option>
+                    <option value="22"> 22 </option>
+										<option value="23"> 23 </option>
+										<option value="24"> 24 </option>
+										<option value="25"> 25 </option>
+										<option value="26"> 26 </option>
+										<option value="27"> 27 </option>
+										<option value="28"> 28 </option>
+										<option value="29"> 29 </option>
+										<option value="30"> 30 </option>
+										<option value="31"> 31 </option>
+                    <option value="32"> 32 </option>
+										<option value="33"> 33 </option>
+										<option value="34"> 34 </option>
+										<option value="35"> 35 </option>
+										<option value="36"> 36 </option>
+										<option value="37"> 37 </option>
+										<option value="38"> 38 </option>
+										<option value="39"> 39 </option>
+										<option value="40"> 40 </option>
+                    <option value="41"> 41 </option>
+                    <option value="42"> 42 </option>
+										<option value="43"> 43 </option>
+										<option value="44"> 44 </option>
+										<option value="45"> 45 </option>
+										<option value="46"> 46 </option>
+										<option value="47"> 47 </option>
+										<option value="48"> 48 </option>
+										<option value="49"> 49 </option>
+										<option value="50"> 50 </option>
+                    <option value="51"> 51 </option>
+                    <option value="52"> 52 </option>
+										<option value="53"> 53 </option>
+										<option value="54"> 54 </option>
+										<option value="55"> 55 </option>
+										<option value="56"> 56 </option>
+										<option value="57"> 57 </option>
+										<option value="58"> 58 </option>
+										<option value="59"> 59 </option>
+										<option value="60"> 60 </option>
+                    <option value="61"> 61 </option>
+                    <option value="62"> 62 </option>
+										<option value="63"> 63 </option>
+										<option value="64"> 64 </option>
+										<option value="65"> 65 </option>
+										<option value="66"> 66 </option>
+										<option value="67"> 67 </option>
+										<option value="68"> 68 </option>
+										<option value="69"> 69 </option>
+										<option value="70"> 70 </option>
+                    <option value="71"> 71 </option>
+                    <option value="72"> 72 </option>
+										<option value="73"> 73 </option>
+										<option value="74"> 74 </option>
+										<option value="75"> 75 </option>
+										<option value="76"> 76 </option>
+										<option value="77"> 77 </option>
+										<option value="78"> 78 </option>
+										<option value="79"> 79 </option>
+										<option value="80"> 80 </option>
+                    <option value="81"> 81 </option>
+                    <option value="82"> 82 </option>
+										<option value="83"> 83 </option>
+										<option value="84"> 84 </option>
+										<option value="85"> 85 </option>
+										<option value="86"> 86 </option>
+										<option value="87"> 87 </option>
+										<option value="88"> 88 </option>
+										<option value="89"> 89 </option>
+										<option value="90"> 90 </option>
+                    <option value="91"> 91 </option>
+                    <option value="92"> 92 </option>
+										<option value="93"> 93 </option>
+										<option value="94"> 94 </option>
+										<option value="95"> 95 </option>
+										<option value="96"> 96 </option>
+										<option value="97"> 97 </option>
+										<option value="98"> 98 </option>
+										<option value="99"> 99 </option>
+										<option value="100"> 100 </option>
+                    <option value="101"> 101 </option>
+                    <option value="102"> 102 </option>
+										<option value="103"> 103 </option>
+										<option value="104"> 104 </option>
+										<option value="105"> 105 </option>
+										<option value="106"> 106 </option>
+										<option value="107"> 107 </option>
+										<option value="108"> 108 </option>
+										<option value="109"> 109 </option>
+										<option value="110"> 110 </option>
+									</select>
+								</span>
+              <span class="form-sub-label">
+									<select name="month" required>
+										<option>Month</option>
+										<option value="1"> 1 </option>
+										<option value="2"> 2 </option>
+										<option value="3"> 3 </option>
+										<option value="4"> 4 </option>
+										<option value="5"> 5 </option>
+										<option value="6"> 6 </option>
+										<option value="7"> 7 </option>
+										<option value="8"> 8 </option>
+										<option value="9"> 9 </option>
+										<option value="10"> 10 </option>
+										<option value="11"> 11 </option>
+										<option value="12"> 12 </option>
+									 </select>
+								</span>
+            </div>
+          </li><br>
+
+            <font size="2">Sex:</font><span class="form-required"> * </span>
+            <div>
+              <input type="radio" id="sexChoice1" name="sex" value="male">
+              <label for="sexChoice1"><font size="2">&ensp;Male</font></label>&emsp;
+
+              <input type="radio" id="sexChoice2" name="sex" value="female">
+              <label for="sexChoice2"><font size="2">&ensp;Female</font></label>&emsp;
+
+              <input type="radio" id="sexChoice3" name="sex" value="unknown">
+              <label for="sexChoice3"><font size="2">&ensp;Unknown</font></label>&emsp;
+            </div><br>
+
+           <font size="2">Citizenship:</font><span class="form-required"> * </span>
+           <div>
+             <input type="radio" id="CitizenshipChoice1" name="Citizenship" value="citizen">
+             <label for="CitizenshipChoice1"><font size="2">&ensp;Citizen (Warganegara)</font></label>&emsp;
+
+             <input type="radio" id="CitizenshipChoice2" name="Citizenship" value="permanent resident">
+             <label for="CitizenshipChoice2"><font size="2">&ensp;Permanent Resident (Penduduk Tetap)</font></label>&emsp;
+
+             <input type="radio" id="CitizenshipChoice3" name="Citizenship" value="non-citizen">
+             <label for="CitizenshipChoice3"><font size="2">&ensp;Non-Citizen (Bukan Warganegara)</font></label>&emsp;
+           </div>
+         <br>
+         <div class="form-group">
+           <label class="control-label col-sm-3"><font size="2">Ethnic Group (For Citizen and Permanent Resident only):</font></label>
+           <div class="col-sm-9">
+             <div class="checkbox">
+               <label class="checkbox-inline">
+                               <input type="checkbox" id="malayCheckbox" value="Malay"><font size="2">&ensp;Malay
+                           </font></label>&emsp;
+               <div class="checkbox">
+                 <label class="checkbox-inline">
+                               <input type="checkbox" id="chineseCheckbox" value="Chinese"><font size="2">&ensp;Chinese
+                           </font></label>&emsp;
+                           <div class="checkbox">
+                             <label class="checkbox-inline">
+                                <input type="checkbox" id="indianCheckbox" value="Indian"><font size="2">&ensp;Indian
+                            </font></label>&emsp;
+                           <div class="checkbox">
+                             <label class="checkbox-inline">
+                                <input type="checkbox" id="bumiputerasabahCheckbox" value="Bumiputera Sabah"><font size="2">&ensp;Bumiputera Sabah
+                            </font></label>&emsp;
+                           <div class="checkbox">
+                             <label class="checkbox-inline">
+                                <input type="checkbox" id="bajauCheckbox" value="Bajau"><font size="2">&ensp;Bajau
+                              </font></label>&emsp;
+                            <div class="checkbox">
+                              <label class="checkbox-inline">
+                                <input type="checkbox" id="murutCheckbox" value="Murut"><font size="2">&ensp;Murut
+                              </font></label>&emsp;
+                            <div class="checkbox">
+                              <label class="checkbox-inline">
+                                <input type="checkbox" id="dusunCheckbox" value="Dusun"><font size="2">&ensp;Dusun
+                              </font></label>&emsp;
+                            <div class="checkbox">
+                              <label class="checkbox-inline">
+                                <input type="checkbox" id="kadazanCheckbox" value="Kadazan"><font size="2">&ensp;Kadazan
+                              </font></label>&emsp;
+                            <div class="checkbox">
+                              <label class="checkbox-inline">
+                                <input type="checkbox" id="bumiputerasabahCheckbox" value="Bumiputera Sabah"><font size="2">&ensp;Bumiputera Sabah
+                              </font></label>&emsp;
+                            <div class="checkbox">
+                              <label class="checkbox-inline">
+                                <input type="checkbox" id="bumiputerasarawakCheckbox" value="Bumiputera Sarawak"><font size="2">&ensp;Bumiputera Sarawak
+                              </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="melayusarawakCheckbox" value="Melayu Sarawak"><font size="2">&ensp;Melayu Sarawak
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="ibanCheckbox" value="Iban"><font size="2">&ensp;Iban
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="melanauCheckbox" value="Melanau"><font size="2">&ensp;Melanau
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="bidayuhCheckbox" value="Bidayuh"><font size="2">&ensp;Bidayuh
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="kedayanCheckbox" value="Kedayan"><font size="2">&ensp;Kedayan
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="bumiputerasarawaklainCheckbox" value="Bumiputera Sarawak Lain"><font size="2">&ensp;Bumiputera Sarawak Lain
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="orangasliCheckbox" value="Orang Asli"><font size="2">&ensp;Orang Asli
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="semenanjungCheckbox" value="Semenanjung"><font size="2">&ensp;Semenanjung
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="othersCheckbox" value="Others"><font size="2">&ensp;Others
+                               </font></label>&emsp;
+                             <div class="checkbox">
+                               <label class="checkbox-inline">
+                                 <input type="checkbox" id="noinformationCheckbox" value="No Information"><font size="2">&ensp;No Information
+                               </font></label>
+               </div><br>
+             </div>
+           </div>
+         </div>
+          <li>
+            <label class="form-label"><font size="2">Nationality (For Non-Citizen only): </font></label>
+            <div class="form-input">
+              <select class="form-dropdown" name="citizen" required>
+									<option value=""><font size="2">Select Country</font></option>
+									<option value="Afghanistan"> Afghanistan </option>
+									<option value="Albania"> Albania </option>
+									<option value="Algeria"> Algeria </option>
+									<option value="Andorra"> Andorra </option>
+									<option value="Angola"> Angola </option>
+									<option value="Antigua and Barbuda"> Antigua and Barbuda </option>
+                  <option value="Argentina"> Argentina </option>
+									<option value="Armenia"> Armenia </option>
+									<option value="Aruba"> Aruba </option>
+									<option value="Australia"> Australia </option>
+									<option value="Austria"> Austria </option>
+									<option value="Azerbaijan"> Azerbaijan </option>
+                  <option value="Bahamas"> Bahamas </option>
+									<option value="Bahrain"> Bahrain </option>
+									<option value="Bangladesh"> Bangladesh </option>
+									<option value="Barbados"> Barbados </option>
+									<option value="Belarus"> Belarus </option>
+									<option value="Belgium"> Belgium </option>
+                  <option value="Belize"> Belize </option>
+									<option value="Benin"> Benin </option>
+									<option value="Bhutan"> Bhutan </option>
+									<option value="Bolivia"> Bolivia </option>
+									<option value="Bosnia and Herzegovina"> Bosnia and Herzegovina </option>
+									<option value="Botswana"> Botswana </option>
+                  <option value="Brazil"> Brazil </option>
+									<option value="Brunei"> Brunei </option>
+									<option value="Bulgaria"> Bulgaria </option>
+									<option value="Burkina Faso"> Burkina Faso </option>
+									<option value="Burundi"> Burundi </option>
+									<option value="Cambodia"> Cambodia </option>
+                  <option value="Cameroon"> Cameroon </option>
+									<option value="Canada"> Canada </option>
+									<option value="Cabo Verde"> Cabo Verde </option>
+									<option value="Central African Republic"> Central African Republic </option>
+									<option value="Chad"> Chad </option>
+									<option value="Chile"> Chile </option>
+                  <option value="China"> China </option>
+									<option value="Colombia"> Colombia </option>
+									<option value="Comoros"> Comoros </option>
+									<option value="Costa Rica"> Costa Rica </option>
+									<option value="Cote d'Ivoire"> Cote d'Ivoire </option>
+									<option value="Croatia"> Croatia </option>
+                  <option value="Cuba"> Cuba </option>
+									<option value="Curacao"> Curacao </option>
+									<option value="Cyprus"> Cyprus </option>
+									<option value="Democratic Republic of the Congo"> Democratic Republic of the Congo</option>
+									<option value="Denmark"> Denmark </option>
+									<option value="Djibouti"> Djibouti </option>
+                  <option value="Dominica"> Dominica </option>
+									<option value="Dominican Republic"> Dominican Republic </option>
+									<option value="East Timor (Timor-Leste)"> East Timor (Timor-Leste) </option>
+									<option value="Ecuador"> Ecuador </option>
+									<option value="Egypt"> Egypt </option>
+									<option value="El Salvador"> El Salvador </option>
+                  <option value="England"> England </option>
+									<option value="Equatorial Guinea"> Equatorial Guinea </option>
+									<option value="Eritrea"> Eritrea </option>
+									<option value="Estonia"> Estonia </option>
+									<option value="Ethiopia"> Ethiopia </option>
+									<option value="Fiji"> Fiji </option>
+                  <option value="Finland"> Finland </option>
+									<option value="France"> France </option>
+                  <option value="French Polynesia"> French Polynesia </option>
+									<option value="Gabon"> Gabon </option>
+									<option value="Gambia"> Gambia </option>
+									<option value="Georgia"> Georgia </option>
+									<option value="Germany"> Germany </option>
+                  <option value="Ghana"> Ghana </option>
+									<option value="Greece"> Greece </option>
+									<option value="Grenada"> Grenada </option>
+									<option value="Guatemala"> Guatemala </option>
+									<option value="Guinea"> Guinea </option>
+									<option value="Guinea-Bissau"> Guinea-Bissau </option>
+                  <option value="Guyana"> Guyana </option>
+									<option value="Haiti"> Haiti </option>
+									<option value="Honduras"> Honduras </option>
+									<option value="Hong Kong"> Hong Kong </option>
+									<option value="Hungary"> Hungary </option>
+									<option value="Iceland"> Iceland </option>
+                  <option value="India"> India </option>
+									<option value="Indonesia"> Indonesia </option>
+                  <option value="Iran"> Iran </option>
+                  <option value="Iraq"> Iraq </option>
+                  <option value="Ireland"> Ireland </option>
+                  <option value="Israel"> Israel </option>
+                  <option value="Italy"> Italy </option>
+                  <option value="Jamaica"> Jamaica </option>
+                  <option value="Japan"> Japan </option>
+                  <option value="Jordan"> Jordan </option>
+                  <option value="Kazakhstan"> Kazakhstan </option>
+                  <option value="Kenya"> Kenya </option>
+                  <option value="Kiribati"> Kiribati </option>
+                  <option value="Democratic People's Republic of Korea"> Democratic People's Republic of Korea</option>
+                  <option value="Republic of Korea"> Republic of Korea </option>
+                  <option value="Kosovo"> Kosovo </option>
+                  <option value="Kuwait"> Kuwait </option>
+                  <option value="Kyrgyzstan"> Kyrgyzstan </option>
+                  <option value="Laos"> Laos </option>
+                  <option value="Latvia"> Latvia </option>
+                  <option value="Lebanon"> Lebanon </option>
+                  <option value="Lesotho"> Lesotho </option>
+                  <option value="Liberia"> Liberia </option>
+                  <option value="Libya"> Libya </option>
+                  <option value="Liechtenstein"> Liechtenstein </option>
+                  <option value="Lithuania"> Lithuania </option>
+                  <option value="Luxembourg"> Luxembourg </option>
+                  <option value="Macau"> Macau </option>
+                  <option value="Macedonia"> Macedonia </option>
+                  <option value="Madagascar"> Madagascar </option>
+                  <option value="Malawi"> Malawi </option>
+                  <option value="Malaysia"> Malaysia </option>
+                  <option value="Maldives"> Maldives </option>
+                  <option value="Mali"> Mali </option>
+                  <option value="Malta"> Malta </option>
+                  <option value="Marshall Islands"> Marshall Islands </option>
+                  <option value="Mauritania"> Mauritania </option>
+                  <option value="Mexico"> Mexico </option>
+                  <option value="Micronesia"> Micronesia </option>
+                  <option value="Moldova"> Moldova </option>
+                  <option value="Monaco"> Monaco </option>
+                  <option value="Mongolia"> Mongolia </option>
+                  <option value="Montenegro"> Montenegro </option>
+                  <option value="Morocco"> Morocco </option>
+                  <option value="Mozambique"> Mozambique </option>
+                  <option value="Namibia"> Namibia </option>
+                  <option value="Nauru"> Nauru </option>
+                  <option value="Nepal"> Nepal</option>
+                  <option value="Netherlands"> Netherlands </option>
+                  <option value="New Zealand"> New Zealand </option>
+                  <option value="Nicaragua"> Nicaragua </option>
+                  <option value="Niger"> Niger </option>
+                  <option value="Nigeria"> Nigeria </option>
+                  <option value="Norway"> Norway </option>
+                  <option value="Oman"> Oman </option>
+                  <option value="Pakistan"> Pakistan </option>
+                  <option value="Palau"> Palau </option>
+                  <option value="Palestin"> Palestin </option>
+                  <option value="Panama"> Panama </option>
+                  <option value="Papua New Guinea"> Papua New Guinea </option>
+                  <option value="Paraguay"> Paraguay </option>
+                  <option value="Peru"> Peru </option>
+                  <option value="Philippines"> Philippines </option>
+                  <option value="Poland"> Poland </option>
+                  <option value="Portugal"> Portugal </option>
+                  <option value="Qatar"> Qatar </option>
+                  <option value="Romania"> Romania </option>
+                  <option value="Russia"> Russia </option>
+                  <option value="Rwanda"> Rwanda </option>
+                  <option value="Saudi Arabia"> Saudi Arabia </option>
+                  <option value="Senegal"> Senegal </option>
+                  <option value="Serbia"> Serbia </option>
+                  <option value="Seychelles"> Seychelles </option>
+                  <option value="Sierra Leone"> Sierra Leone </option>
+                  <option value="Singapore"> Singapore </option>
+                  <option value="Sint Maarten"> Sint Maarten </option>
+                  <option value="Slovakia"> Slovakia </option>
+                  <option value="Slovenia"> Slovenia </option>
+                  <option value="Solomon Islands"> Solomon Islands </option>
+                  <option value="Somalia"> Somalia </option>
+                  <option value="South Africa"> South Africa </option>
+                  <option value="South Sudan"> South Sudan </option>
+                  <option value="Spain"> Spain </option>
+                  <option value="Sri Lanka"> Sri Lanka </option>
+                  <option value="Sudan"> Sudan </option>
+                  <option value="Suriname"> Suriname </option>
+                  <option value="Swaziland"> Swaziland </option>
+                  <option value="Sweden"> Sweden </option>
+                  <option value="Switzerland"> Switzerland </option>
+                  <option value="Syria"> Syria </option>
+                  <option value="Taiwan"> Taiwan </option>
+                  <option value="Tajikistan"> Tajikistan </option>
+                  <option value="Tanzania"> Tanzania </option>
+                  <option value="Thailand"> Thailand </option>
+                  <option value="Timor-Leste"> Timor-Leste </option>
+                  <option value="Togo"> Togo </option>
+                  <option value="Tonga"> Tonga </option>
+                  <option value="Trinidad and Tobago"> Trinidad and Tobago </option>
+                  <option value="Tunisia"> Tunisia </option>
+                  <option value="Turkey"> Turkey </option>
+                  <option value="Turkmenistan"> Turkmenistan </option>
+                  <option value="Tuvalu"> Tuvalu </option>
+                  <option value="Uganda"> Uganda </option>
+                  <option value="Ukraine"> Ukraine </option>
+                  <option value="United Arab Emirates"> United Arab Emirates </option>
+                  <option value="United Kingdom"> United Kingdom </option>
+                  <option value="United States"> United States </option>
+                  <option value="Uruguay"> Uruguay </option>
+                  <option value="Uzbekistan"> Uzbekistan </option>
+                  <option value="Vanuatu"> Vanuatu </option>
+                  <option value="Venezuela"> Venezuela </option>
+                  <option value="Vietnam"> Vietnam </option>
+                  <option value="Yemen"> Yemen </option>
+                  <option value="Zambia"> Zambia </option>
+                  <option value="Zimbabwe"> Zimbabwe </option>
+								</select>
+            </div>
+          </li><br>
+
+           <font size="2">Religion:</font><span class="form-required"> * </span>
+           <div>
+             <input type="radio" id="religionChoice1" name="religion" value="no information">
+             <label for="religionChoice1"><font size="2">No Information</font></label>&emsp;
+
+             <input type="radio" id="religionChoice2" name="religion" value="islam">
+             <label for="religionChoice2"><font size="2">Islam</font></label>&emsp;&emsp;&emsp;
+
+             <input type="radio" id="religionChoice3" name="religion" value="christianity">
+             <label for="religionChoice3"><font size="2">Christianity</font></label> <br>
+
+             <input type="radio" id="religionChoice4" name="religion" value="buddhism">
+             <label for="religionChoice4"><font size="2">Buddhism</font></label>&emsp;&emsp;&emsp;
+
+             <input type="radio" id="religionChoice5" name="religion" value="hinduism">
+             <label for="religionChoice5"><font size="2">Hinduism</font></label>&emsp;&nbsp;
+
+             <input type="radio" id="religionChoice6" name="religion" value="sikhism">
+             <label for="religionChoice6"><font size="2">Sikhism</font></label> <br>
+
+             <input type="radio" id="religionChoice7" name="religion" value="atheist">
+             <label for="religionChoice7"><font size="2">Atheist</font></label>&emsp;&emsp;&emsp;&emsp;&nbsp;
+
+             <input type="radio" id="religionChoice8" name="religion" value="taoism">
+             <label for="religionChoice8"><font size="2">Taoism</font></label>&emsp;&emsp;&nbsp;
+
+             <input type="radio" id="religionChoice9" name="religion" value="confucianism">
+             <label for="religionChoice9"><font size="2">Confucianism</font></label> <br>
+
+             <input type="radio" id="religionChoice10" name="religion" value="bahaism">
+             <label for="religionChoice10"><font size="2">Bahaism</font></label>&emsp;&emsp;&emsp;&ensp;
+
+             <input type="radio" id="religionChoice11" name="religion" value="animism">
+             <label for="religionChoice11"><font size="2">Animism</font></label>&emsp;&ensp;
+
+             <input type="radio" id="religionChoice12" name="religion" value="others">
+             <label for="religionChoice12"><font size="2">Others,</font></label> <font size="2">Please State:&emsp;</font><input type="text" id="religionValue" name="religion">
+           </div>
+
+          <li><br>
+            <label class="form-label"><font size="2">Marital Status: </font><span class="form-required"> * </span></label>
+            <div class="form-input">
+              <select class="form-dropdown" name="marital status" required>
+									<option value=""><font size="2">Please select</font></option>
+									<option value="Married"> Married </option>
+									<option value="Single"> Single </option>
+									<option value="Widowed"> Widowed </option>
+									<option value="Divorced"> Divorced </option>
+									<option value="De-Facto"> De-Facto </option>
+									<option value="Others"> Others </option>
+                  <option value="No Information"> No Information </option>
+                </select>
+            </div>
+          </li><br>
+
+           <font size="2">Highest Completed Education:</font><span class="form-required"> * </span>
+           <div>
+             <input type="radio" id="educationChoice1" name="education" value="none">
+             <label for="educationChoice1"><font size="2">None</font></label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+
+             <input type="radio" id="educationChoice2" name="education" value="primary education">
+             <label for="educationChoice2"><font size="2">Primary Education</font></label>&emsp;
+
+             <input type="radio" id="educationChoice3" name="education" value="secondary education">
+             <label for="educationChoice3"><font size="2">Secondary Education</font></label><br>
+
+             <input type="radio" id="educationChoice4" name="education" value="tertiary education">
+             <label for="educationChoice4"><font size="2">Tertiary Education</font></label>&emsp;
+
+             <input type="radio" id="educationChoice5" name="education" value="others">
+             <label for="educationChoice5"><font size="2">Others,</font></label> <font size="2">Please State:</font><input type="text" id="educationValue" name="education">
+           </div><br>
+
+<!-- <input type="submit" class="button expanded" value="REGISTER" [disabled]="!rForm.valid"><a class="link" [routerLink]="'http://localhost:4200/login'"></a><button mat-raised-button color="red"></button> -->
+
+<!--<div class="register">
+           <button mat-raised-button color="red" class="submit-button" aria-label="submit"
+                   [disabled]="formErrorss.invalid">
+                   <a class="link" [routerLink]="'/login'"></a>
+              REGISTER
+           </button> -->
+           <button type="submit" class="btn btn-default"
+                        [disabled]="!form.valid">Submit</button>
+</div>

@@ -1,0 +1,57 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Patient's Log</span>
+      <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+    <!-- <mat-tab-group>
+      <mat-tab label="High Alert Log">
+        
+      </mat-tab>
+      <mat-tab label="Activity Log">Content 2</mat-tab>
+    </mat-tab-group> -->
+    <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+    
+      <ng-container cdkColumnDef="index">
+        <mat-header-cell *cdkHeaderCellDef>Index</mat-header-cell>
+          <mat-cell *cdkCellDef="let log, let i = index;">
+            {{i + 1}}
+          </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="log">
+        <mat-header-cell *cdkHeaderCellDef>Logs</mat-header-cell>
+        <mat-cell *cdkCellDef="let log;">
+          {{log.action}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="date">
+        <mat-header-cell *cdkHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *cdkCellDef="let log;">
+          {{log.date| date:'dd/MM/yy'}}
+           <!-- {{log.date}} -->
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="time">
+        <mat-header-cell *cdkHeaderCellDef>Time</mat-header-cell>
+        <mat-cell *cdkCellDef="let log;">
+          {{log.time}}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *cdkHeaderRowDef="displayedColumn"></mat-header-row>
+      <mat-row *cdkRowDef="let log; columns: displayedColumn;" class="patient"
+        matRipple [@animate]="{value:'*',params:{y:'100%'}}">
+      </mat-row>
+    </mat-table>
+
+  </div>
+</div>

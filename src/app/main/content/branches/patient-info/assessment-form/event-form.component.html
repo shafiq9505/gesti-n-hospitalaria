@@ -1,0 +1,110 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+            0 - Did not apply to me at all - NEVER<br>
+            1 - Applied to me to some degree, or some of the time - SOMETIMES<br>
+            2 - Applied to me to a considerable degree, or a good part of time - OFTEN<br>
+            3 - Applied to me very much, or most of the time - ALMOST ALWAYS 
+
+    </div>
+    
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <form name="assessmentForm" [formGroup]="assessmentForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+
+            <!-- <mat-form-field class="w-100-p">
+                <input matInput
+                       name="session_name"
+                       formControlName="session_name"
+                       placeholder="Session"
+                       required>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field class="w-100-p">
+
+                <input matInput
+                name="doctor_name"
+                formControlName="doctor_name"
+                placeholder="Doctor">
+                
+            </mat-form-field> -->
+            
+            <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}">
+                    <!-- TITLE -->
+             <ng-container cdkColumnDef="question">
+                   <mat-header-cell *cdkHeaderCellDef>Questions</mat-header-cell>
+                   <mat-cell *cdkCellDef="let das"> 
+                     <p class="font-weight-600">{{das.question}}</p>
+                   </mat-cell>
+                 </ng-container>
+                 <!-- /TITLE -->
+              
+
+                    <!-- RADIO -->
+                    <ng-container cdkColumnDef="radio">
+                        <mat-header-cell *cdkHeaderCellDef>Score</mat-header-cell>
+                        <mat-cell *cdkCellDef="let das">
+                            <p class="font-weight-600">
+                                
+                                <mat-radio-group (change)="dasScore(das.type,das.idx,$event)" >
+                                    <mat-radio-button value="0" >0</mat-radio-button>
+                                    <mat-radio-button value="1" >1</mat-radio-button>
+                                    <mat-radio-button value="2" >2</mat-radio-button>
+                                    <mat-radio-button value="3" >3</mat-radio-button>
+                                </mat-radio-group>
+                            </p>
+                        </mat-cell>
+                    </ng-container>
+                    <!-- /RADIO -->
+           
+                    <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+             <mat-row 
+               *cdkRowDef="let das; columns: displayColumns;" 
+               class="das" >
+             </mat-row>
+            </mat-table>
+
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button 
+                mat-raised-button
+                (click)="dialogRef.close(assessmentForm)"
+                class="save-button mat-accent"
+                [disabled]="assessmentForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <!-- <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(['save',eventForm])"
+                class="save-button mat-accent"
+                [disabled]="eventForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-button
+                class="mat-icon-button"
+                (click)="dialogRef.close(['delete',eventForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button> -->
+    </div>
+</div>

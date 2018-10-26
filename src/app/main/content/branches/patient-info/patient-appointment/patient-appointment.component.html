@@ -1,0 +1,55 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}" fusePerfectScrollbar>
+  
+  <!-- TITLE -->
+  <ng-container cdkColumnDef="title">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Title</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAppointment"> 
+      <p class="font-weight-600">{{patientAppointment.title}}</p>
+    </mat-cell>
+  </ng-container>
+  <!-- /TITLE -->
+
+  <!-- START -->
+    <ng-container cdkColumnDef="start">
+      <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Time</mat-header-cell>
+      <mat-cell *cdkCellDef="let patientAppointment">
+        <p class="font-weight-600">
+          {{ patientAppointment.start | date : "fullDate" }} {{patientAppointment.start | date : "shortTime"}}
+        </p>
+      </mat-cell>
+    </ng-container>
+     <!-- /START -->
+
+  <!-- END -->
+  <!-- <ng-container cdkColumnDef="end">
+    <mat-header-cell *cdkHeaderCellDef>End</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAppointment">
+      <p class="font-weight-600">
+        {{ patientAppointment.end }}
+      </p>
+    </mat-cell>
+  </ng-container> -->
+  <!-- /END -->
+
+  <!-- PHYSICIAN -->
+  <ng-container cdkColumnDef="physician">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Physician</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAppointment">
+      <p class="font-weight-600">
+        {{ patientAppointment.doctor }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /PHYSICIAN -->
+
+  <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row 
+    *cdkRowDef="let patientAppointment; columns: displayColumns;" 
+    class="patientAppointment" 
+    matRipple 
+    [@animate]="{value:'*',params:{y:'100%'}}"
+    (click)="editVisitNote(patientAppointment)"
+    >
+  </mat-row>
+  
+</mat-table>

@@ -1,0 +1,58 @@
+<div id="branchmgt" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <div class="black-fg" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text s-16">home</mat-icon>
+                            <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                            <span class="secondary-text">Branch Managemant</span>
+                        </div>
+                        <div class="mt-8">
+                            <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+                            <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Branch Managemant</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <div class="search-input-wrapper mt-16 ml-8 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-icon>search</mat-icon>
+                </label>
+                <mat-form-field mat-no-float class="m-0" floatPlaceholder="never">
+                    <input matInput [formControl]="searchInput" id="search" placeholder="Search for anything">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+
+            <button mat-raised-button (click)="newBranch()" class="add-branch-button mat-white-bg my-12 mt-sm-0">
+                <span>ADD NEW BRANCH</span>
+            </button>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+            <fuse-branch-branch-list></fuse-branch-branch-list>
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

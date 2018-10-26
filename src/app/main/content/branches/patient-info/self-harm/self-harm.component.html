@@ -1,0 +1,544 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">SELF HARM REGISTRATION</span>
+      <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="-24 m0" fusePerfectScrollbar>
+    <form name="selfharmForm" [formGroup]="selfharmForm" class="w-100-p" fxLayout="column" fxFlex>
+
+      <p>
+        <font size=2>
+          <strong>Admission Ward (First Admitting Ward):</strong>
+        </font>
+      </p>
+      <div fxFlex="1 0 auto" fxLayout="column" fxLayout.gt-xs="row">
+        <mat-radio-group formControlName="admitward" placeholder=" " required>
+          <mat-radio-button value="Medical">
+            <font size=2>Medical</font>
+          </mat-radio-button>&emsp;&emsp;&emsp;&emsp;&ensp;
+          <mat-radio-button value="Surgical">
+            <font size=2>Surgical</font>
+          </mat-radio-button>&emsp;&emsp;
+          <mat-radio-button value="Psychiatry">
+            <font size=2>Psychiatry</font>
+          </mat-radio-button>
+          <br>
+          <mat-radio-button value="Orthopaedics">
+            <font size=2>Orthopaedics</font>
+          </mat-radio-button>&emsp;&emsp;&nbsp;
+          <mat-radio-button value="Others">
+            <font size=2>Others&emsp;
+              <input matInput placeholder="Please specify" formControlName="otherward" required>
+            </font>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+
+      <p>
+        <font size=2>
+          <strong>Admission Data:</strong>
+        </font>
+      </p>
+      <font size=2>(i) Date:&emsp;
+        <input name="Date" formControlName="dateadmit" type="date" placeholder="Please choose a date" required>
+      </font>&emsp;
+      <font size=2>(ii) Time:&emsp;
+        <input matInput placeholder="Please state" formControlName="timeadmit" type="time" required>
+      </font>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Mode of Arrival:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="arrivalmode" required>
+        <mat-radio-button value="Self">
+          <font size=2>Self</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Family">
+          <font size=2>Family</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Ambulance">
+          <font size=2>Ambulance</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Police">
+          <font size=2>Police</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Self-Harm Act:</strong>
+        </font>
+      </p>
+      <font size=2>(i) Date:&emsp;</font>
+      <input name="Date" formControlName="dateact" type="date" placeholder="Please choose a date" required>&emsp;
+      <font size=2>(ii) Time:&emsp;</font>
+      <input matInput placeholder="Please state" type="time" formControlName="timeact" required>
+      <br>
+      <font size=2>(iii) Place of Occurance:
+        <mat-select placeholder="Select one" formControlName="occurance" required>
+          <mat-option>Please select</mat-option>
+          <mat-option value="Home">Home</mat-option>
+          <mat-option value="Residential Institution">Residential Institution</mat-option>
+          <mat-option value="School and Public Admin Area">School and Public Admin Area</mat-option>
+          <mat-option value="Sports and Athletics Area">Sports and Athletics Area</mat-option>
+          <mat-option value="Street and Highway">Street and Highway</mat-option>
+          <mat-option value="Trade and Service Area">Trade and Service Area</mat-option>
+          <mat-option value="Industrial and Construction Area">Industrial and Construction Area</mat-option>
+          <mat-option value="Farm/ Plantation">Farm/ Plantation</mat-option>
+          <mat-option value="Other Specified Areas">Other Specified Areas</mat-option>
+          <mat-option value="Unspecified Place">Unspecified Place</mat-option>
+        </mat-select>
+      </font>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Method of Self-Harm:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="method" required>
+        <mat-radio-button value="Hanging">
+          <font size=2>Hanging</font>
+        </mat-radio-button>&emsp;&emsp;&ensp;
+        <mat-radio-button value="Cutting or Piercing">
+          <font size=2>Cutting or Piercing</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Jumping from Height">
+          <font size=2>Jumping from Height</font>
+        </mat-radio-button>
+        <br>
+        <mat-radio-button value="Drowning">
+          <font size=2>Drowning</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Suffocation">
+          <font size=2>Suffocation</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Firearms or Explosives">
+          <font size=2>Firearms or Explosives</font>
+        </mat-radio-button>
+        <br>
+        <mat-radio-button value="Poisoning/ Overdose">
+          <font size=2>Poisoning/ Overdose</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Intent:</strong>
+        </font>
+      </p>
+      <font size=2>(i) Expression of Intent:</font>
+      <mat-radio-group placeholder=" " formControlName="expression" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Undetermined">
+          <font size=2>Undetermined</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(ii) If YES, Mode of Expression (Can tick more than 1):&emsp;</font>
+      <br>
+      <mat-checkbox>
+        <font size=2>Verbal</font>
+      </mat-checkbox>&emsp;&emsp;&emsp;&emsp;
+      <mat-checkbox>
+        <font size=2>Hand Written</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Rehearsing</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Efforts to learn more</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Not Expressed</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Messaging</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Social Media</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Others</font>
+      </mat-checkbox>
+      <input matInput placeholder="Please specify" formControlName="othersmode">
+      <br>
+      <br>
+      <font size=2>(iii) Prior Suicidal Ideation:</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="suicidal" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(iv) Impulsive Act:</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="impulsive" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(v) Accidential Act:</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="accidential" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(vi) Related to Intellectual Disability:</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="disability" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(vii) Final Impression of Intent:&emsp;</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="final" required>
+        <mat-radio-button value="Low">
+          <font size=2>Low</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Moderate">
+          <font size=2>Moderate</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="High">
+          <font size=2>High</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Physical Consequences of Attempt:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="consequences" required>
+        <mat-radio-button value="No significant physical harm, no medical treatment required">
+          <font size=2>No significant physical harm, no medical treatment required</font>
+        </mat-radio-button>
+        <br>
+        <mat-radio-button value="Medical attention/surgery required, but no danger to life">
+          <font size=2>Medical attention/surgery required, but no danger to life</font>
+        </mat-radio-button>
+        <br>
+        <mat-radio-button value="Medical attention/surgery required, had/has danger to life">
+          <font size=2>Medical attention/surgery required, had/has danger to life</font>
+        </mat-radio-button>
+        <br>
+        <mat-radio-button value="Lethal">
+          <font size=2>Lethal</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Previous Self-Harm Attempt:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="preattempt" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>&emsp;(ii) If YES, Number of Previous Attempt:&emsp;
+        <input matInput placeholder="Please specify" formControlName="attempt">
+      </font>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Underlying Psychiatric Illness:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="illness" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(ii) Is patient currently on treatment?
+        <br>
+        <input matInput placeholder="Please specify" formControlName="diagnoseill">
+      </font>
+      <br>
+      <br>
+      <font size=2>(ii) Diagnosis of Psychiatric Illness:&emsp;</font>
+      <br>
+      <mat-radio-group placeholder=" " formControlName="treatment" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Life Events:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="lifeevents" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+      <font size=2>(ii) If YES (Can tick more than 1):&emsp;</font>
+      <br>
+      <mat-checkbox>
+        <font size=2>Intimate relationship problems</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Other relationship problems</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Death of loved one</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Job related problem</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Financial problem</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Academic related problems</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Criminal/legal problems</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Serious illness/injury</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Victim of abuse</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Others</font>
+      </mat-checkbox>&emsp;
+      <font size=2>
+        <input matInput placeholder="Please specify" formControlName="otherlife">
+      </font>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>History of Physical/ Sexual Abuse in Childhood:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="sexualabuse" required>
+        <mat-radio-button value="Yes">
+          <font size=2>Yes</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="No">
+          <font size=2>No</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Uncertain">
+          <font size=2>Uncertain</font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Discharge Details:</strong>
+        </font>
+      </p>
+      <font size=2>(i) Date:&emsp;
+        <input name="Date" formControlName="datedischarge" type="date" placeholder="Please choose a date">
+      </font>&emsp;
+      <font size=2>(ii) Number of Days in Ward:&emsp;
+        <input matInput placeholder="Please specify" formControlName="wardday" required>
+      </font>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Discharge Diagnosis:</strong>
+        </font>
+      </p>
+      <font size=2>Actual Diagnosis Given:</font>
+      <br>
+      <font size=2>(i) Main Diagnosis:&emsp;
+        <input matInput placeholder="Please specify" formControlName="maindiagnosis" required>
+      </font>
+      <br>
+      <font size=2>(ii) External Causes:&emsp;
+        <input matInput placeholder="Please specify" formControlName="external" required>
+      </font>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Psy Mx on Discharge (Please tick more than 1):</strong>
+        </font>
+      </p>
+      <mat-checkbox>
+        <font size=2>Transferred to Psychiatry Ward</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Referred to Counsellor</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Refer Community Psychiatry Services</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Given Appointment to Psychiatry Clinic</font>
+      </mat-checkbox>
+      <br>
+      <mat-checkbox>
+        <font size=2>Discharge without any Psychiatry Follow-up</font>
+      </mat-checkbox>&emsp;
+      <mat-checkbox>
+        <font size=2>Others</font>
+      </mat-checkbox>
+      <font size=2>
+        <input matInput placeholder="Please specify" formControlName="othermx">
+      </font>
+      <br>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Preferred Support if Suicidal:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="support" required>
+        <mat-radio-button value="Face-to-face">
+          <font size=2>Face-to-face</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Online">
+          <font size=2>Online</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Phone Call">
+          <font size=2>Phone Call</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Others">
+          <font size=2>Others&nbsp;
+            <input matInput placeholder="Please specify" formControlName="othersupport">
+          </font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+
+      <p>
+        <font size=2>
+          <strong>Preferred Therapy:</strong>
+        </font>
+      </p>
+      <mat-radio-group placeholder=" " formControlName="therapy" required>
+        <mat-radio-button value="Self-help">
+          <font size=2>Face-to-face</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Individual">
+          <font size=2>Individual</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Group">
+          <font size=2>Group</font>
+        </mat-radio-button>&emsp;
+        <mat-radio-button value="Others">
+          <font size=2>Others&emsp;</font>
+          <font size=2>
+            <input matInput placeholder="Please specify" formControlName="othertherapy">
+          </font>
+        </mat-radio-button>
+      </mat-radio-group>
+      <br>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <button *ngIf="action !=='edit'" mat-raised-button (click)="dialogRef.close(selfharmForm)" class="save-button mat-accent"
+      aria-label="REGISTER">
+      REGISTER
+    </button>
+    <button *ngIf="action ==='edit'" mat-raised-button (click)="dialogRef.close(selfharmForm)" class="save-button mat-accent"
+      aria-label="REGISTER">
+      UPDATE
+    </button>
+
+  </div>
+</div>

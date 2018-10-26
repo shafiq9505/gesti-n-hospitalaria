@@ -1,0 +1,173 @@
+<div id="branchinfo" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg"
+             fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-16" mat-icon-button [routerLink]="'/branchmgt'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Branch Details</span>
+
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <mat-tab-group>
+
+                    <mat-tab label="Branch Details">
+
+                        <div class="branchinfo-details tab-content p-24" fusePerfectScrollbar>
+
+                        <table class="simple">
+                            <tbody>
+                                <tr class="name">
+                                    <td width="30%">Name</td>
+                                    <td>{{ branchinfo.name }}</td>
+                                </tr>
+                                <tr class="address">
+                                    <td>Address</td>
+                                    <td>{{ branchinfo.address }}, {{ branchinfo.postcode }} {{ branchinfo.city }}, {{ branchinfo.state }}</td>
+                                </tr>
+                                <tr class="phone">
+                                    <td>Phone No</td>
+                                    <td>{{ branchinfo.phone }}</td>
+                                </tr>
+                                <tr class="fax">
+                                    <td>Fax No</td>
+                                    <td>{{ branchinfo.faxno }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Teams">
+                      <div class="teams tab-content p-24">
+                        <div class="section pb-48">
+                          <form class="add-team p-24"
+                                (ngSubmit)="updateStatus()"
+                                [formGroup]="statusForm"
+                                fxLayout="row" fxLayoutAlign="start center">
+
+                              <mat-form-field class="mr-16" fxFlex>
+                                  <input name="newStatus" formControlName="newStatus" placeholder="Team Name" matInput required>
+                              </mat-form-field>
+
+                              <button mat-raised-button class="mat-accent"
+                                      [disabled]="statusForm.invalid">
+                                  Add Team
+                              </button>
+                          </form>
+                        </div>
+
+                        <div class="section pb-48" fusePerfectScrollbar>
+                            <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>No. of Member</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let team of branchinfo.team">
+                                        <td>{{ team.name }}</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </mat-tab>
+                    <!-- <mat-tab label="Users">
+
+                        <div class="user tab-content p-24" fusePerfectScrollbar>
+                          <button mat-raised-button
+                                  (click)="newUser()"
+                                  class="add-contact-button mat-white-bg my-12 mt-sm-0">
+                              <span>ADD NEW USER</span>
+                          </button>
+                          <table class="simple">
+                                <thead>
+                                    <tr>
+                                        <th>Avatar</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Job Category</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of branchinfo.users">
+                                        <td>
+                                          <img class="avatar" *ngIf="user.avatar" [alt]="user.name"
+                                               [src]="user.avatar"/>
+                                        </td>
+                                        <td>
+                                          <p class="text-truncate font-weight-600">{{user.name}} {{user.lastName}}</p>
+                                        </td>
+                                        <td>
+                                          <p class="email text-truncate">
+                                              {{user.email}}
+                                          </p>
+                                        </td>
+                                        <td>
+                                          <p class="phone text-truncate">
+                                              {{user.phone}}
+                                          </p>
+                                        </td>
+                                        <td>
+                                          <p class="job-category text-truncate">
+                                              {{user.jobCategory}}
+                                          </p>
+                                        </td>
+                                        <td>
+                                          <div fxFlex="row" fxLayoutAlign="end center">
+
+                                              <button mat-icon-button (click)="editContact(user)" aria-label="Toggle star">
+                                                  <mat-icon>mode_edit</mat-icon>
+                                              </button>
+
+                                              <button mat-menu-item aria-label="remove" (click)="deleteContact(user)">
+                                                  <mat-icon>delete</mat-icon>
+                                              </button>
+                                          </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-tab> -->
+
+                </mat-tab-group>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

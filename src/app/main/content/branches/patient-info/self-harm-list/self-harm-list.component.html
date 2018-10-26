@@ -1,0 +1,53 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}" fusePerfectScrollbar>
+
+  <!-- ADMISSION DATA -->
+  <ng-container cdkColumnDef="admission data">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Admission Data</mat-header-cell>
+    <mat-cell *cdkCellDef="let selfharm">
+      <p class="font-weight-600">
+        {{ selfharm.dateadmit }}/{{ selfharm.timeadmit }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- SELF-HARM ACT -->
+  <ng-container cdkColumnDef="self harm act">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Self-Harm Act</mat-header-cell>
+    <mat-cell *cdkCellDef="let selfharm">
+      <p class="font-weight-600">
+        {{ selfharm.dateact }}/{{ selfharm.timeact }}/{{ selfharm.occurance }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- DISCHARGE DETAILS -->
+  <ng-container cdkColumnDef="dischargedetails">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Discharge Details</mat-header-cell>
+    <mat-cell *cdkCellDef="let selfharm">
+      <p class="font-weight-600">
+        {{ selfharm.datedischarge }}/{{ selfharm.wardday }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- DIAGNOSIS DETAILS -->
+  <ng-container cdkColumnDef="diagnosisdetails">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Diagnosis Details</mat-header-cell>
+    <mat-cell *cdkCellDef="let selfharm">
+      <p class="font-weight-600">
+        {{ selfharm.maindiagnosis }}/{{ selfharm.external }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row
+    *cdkRowDef="let selfharm; columns: displayColumns;"
+    class="selfharm"
+    matRipple
+    [@animate]="{value:'*',params:{y:'100%'}}"
+    (click)="editSelfHarm(selfharm)"
+    >
+  </mat-row>
+
+</mat-table>

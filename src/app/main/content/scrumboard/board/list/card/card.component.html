@@ -1,0 +1,62 @@
+
+
+<!-- CARD DETAILS -->
+<div class="list-card-details">
+
+    <!-- CARD SORT HANDLE -->
+    <div class="list-card-sort-handle">
+        <mat-icon mat-font-icon="icon-cursor-move" class="icon s16"></mat-icon>
+    </div>
+    <!-- /CARD SORT HANDLE -->
+
+
+
+    <!-- CARD NAME -->
+    <div class="list-card-name">{{card?.name}}</div>
+    <!-- / CARD NAME -->
+
+
+
+
+</div>
+<!-- / CARD DETAILS -->
+
+<!-- CARD FOOTER -->
+<div class="list-card-footer" fxLayout="row" fxLayoutAlign="space-between center">
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+
+        <!-- CARD DETAILS -->
+        <!-- <span *ngIf="card.description !== ''"
+              class="list-card-footer-item" fxLayout="row" fxLayoutAlign="start center">
+            {{card.description}}
+        </span> -->
+
+        <span *ngIf="card?.type == 'subjective'"
+              class="list-card-footer-item" fxLayout="row" fxLayoutAlign="start center">
+            Subjective
+        </span>
+        <span *ngIf="card?.type == 'multiplechoice'"
+              class="list-card-footer-item" fxLayout="row" fxLayoutAlign="start center">
+            Multiple Choice Question
+        </span>
+        <span *ngIf="card?.type == 'scale'"
+              class="list-card-footer-item" fxLayout="row" fxLayoutAlign="start center">
+            Scale
+        </span>
+        <span *ngIf="card?.type == 'checkbox'"
+              class="list-card-footer-item" fxLayout="row" fxLayoutAlign="start center">
+            Checkbox
+        </span>
+
+        <!-- / CARD DETAILS -->
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+
+
+
+    </div>
+</div>
+<!-- CARD FOOTER -->

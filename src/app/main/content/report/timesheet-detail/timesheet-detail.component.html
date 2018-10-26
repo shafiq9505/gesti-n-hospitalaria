@@ -1,0 +1,66 @@
+<div id="patientinfo" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button class="mr-16" mat-icon-button [routerLink]="'/reports'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+        <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Timesheet Details</span>
+
+      </div>
+      <!-- / APP TITLE -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+
+      <!-- CONTENT -->
+      <div class="content">
+        <div class="patientinfo-details tab-content p-24" fusePerfectScrollbar>
+        
+          <table class="simple">
+            <tbody>
+              <tr>
+                <td>From</td>
+                <td>:</td>
+                <td colspan="2">{{ timesheet.from }}</td>
+              </tr>
+              <tr>
+                <td>To</td>
+                <td>:</td>
+                <td colspan="2">{{ timesheet.to }}</td>
+              </tr>
+              <tr>
+                <td>Total Hours</td>
+                <td>:</td>
+                <td>{{ timesheet.totalHours }}</td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <app-timesheet-report-list></app-timesheet-report-list>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /CONTENT -->
+    </div>
+  </div>
+</div>

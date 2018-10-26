@@ -1,0 +1,98 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+    <!-- Name Column -->
+    <ng-container cdkColumnDef="name">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient">
+            <p class="text-truncate font-weight-600">
+                {{patient.fname}}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- sex Column -->
+    <ng-container cdkColumnDef="sex">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Sex</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient">
+            <p class="text">
+                {{patient.sex}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- DOB Column -->
+    <ng-container cdkColumnDef="birthday">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Birthday</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient">
+            <p class="text">
+                {{patient.birthday | date:'dd/MM/yy'}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container cdkColumnDef="admission">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-sm style="font-size: 1em;">Admission</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient" fxHide fxShow.gt-sm>
+            <p class="text">
+                {{patient.admission}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+
+    <ng-container cdkColumnDef="age">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-sm style="font-size: 1em;">Age</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient" fxHide fxShow.gt-sm>
+            <p class="age">
+                {{patient.age}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="doctor">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-sm style="font-size: 1em;">Doctor-in-charge</mat-header-cell>
+        <mat-cell *cdkCellDef="let patient" fxHide fxShow.gt-sm>
+            <p class="doctor">
+                {{ (patient.current_assigned_doctor?patient.current_assigned_doctor:'No Doctor Assigned') }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- BUTTON COLUMN -->
+    <ng-container cdkColumnDef="button">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;"></mat-header-cell>
+        <mat-cell *cdkCellDef="let patient">
+            <div fxFlex="row" fxLayoutAlign="end center">
+                <button mat-button class="mat-icon-button" (click)="toggleStar($event, patient)" aria-label="Toggle star">
+                    <mat-icon *ngIf="patient.highalert === 'true'" style="color: red;">error</mat-icon>
+                    <mat-icon *ngIf="!patient.highalert || patient.highalert === 'false'">error_outline</mat-icon>
+                </button>
+                <button mat-button [matMenuTriggerFor]="moreMenu" aria-label="More" class="mat-icon-button" (click)="$event.stopPropagation();" fxHide.xs>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item aria-label="toggle done" (click)="showLog(patient)">
+                        <ng-container>
+                            <mat-icon>book</mat-icon>
+                            <span>Patient's Log</span>
+                        </ng-container>
+                    </button>
+                </mat-menu>
+          </div>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row 
+        *cdkRowDef="let patient; columns: displayedColumns;" 
+        class="patient" 
+        [routerLink]="'/branches/'+this.patient.guid"
+        [ngClass]="{'mat-light-blue-50-bg':checkboxes[patient.id]}"
+        matRipple 
+        [@animate]="{value:'*',params:{y:'100%'}}">
+    </mat-row>
+</mat-table>
+
+<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>

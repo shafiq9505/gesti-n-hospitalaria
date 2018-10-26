@@ -1,0 +1,243 @@
+<div id="patientinfo" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+          <div class="black-fg" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="secondary-text s-16">home</mat-icon>
+            <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+            <span class="secondary-text" [routerLink]="'/branches'">Patients</span>
+            <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+            <span class="secondary-text">Patients Details</span>
+          </div>
+          <div class="mt-8">
+            <button class="mr-16" mat-icon-button [routerLink]="'/branches'">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+
+            <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+            <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">{{patientinfo.fname}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- / APP TITLE -->
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONENT CARD -->
+    <div class="content-card mat-white-bg">
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <mat-tab-group>
+
+          <mat-tab label="Patient Details">
+
+            <div class="patientinfo-details tab-content p-24" fusePerfectScrollbar>
+
+              <table class="simple">
+                <tbody>
+                  <tr class="name">
+                    <td width="30%">Name</td>
+                    <td>{{ patientinfo.fname }}</td>
+                  </tr>
+                  <tr class="address">
+                    <td>Address</td>
+                    <td>{{ patientinfo.alamat? patientinfo.alamat : ( patientinfo.address ? patientinfo.address : patientinfo.alamat)
+                      }}, {{ patientinfo.postcode }} {{ patientinfo.city }}, {{ patientinfo.state }}</td>
+                  </tr>
+                  <tr class="phone">
+                    <td>Phone No</td>
+                    <td>{{ patientinfo.contact }}</td>
+                  </tr>
+                  <tr class="current_assigned_doctor">
+                    <td>Current Doctor in Charge</td>
+                    <td>{{ patientinfo.current_assigned_doctor?patientinfo.current_assigned_doctor:'No Doctor Assigned' }}</td>
+                  </tr>
+                  <tr>
+                    <td>Assign To Doctor:</td>
+                    <td>
+                      <form (ngSubmit)="assignToDoctor()">
+                        <mat-form-field>
+                          <mat-select placeholder="ASSIGN TO:" style="min-width: 100%;" [(ngModel)]="doctorDocId" [ngModelOptions]="{standalone: true}">
+                            <mat-option *ngFor="let list of doctorlist" [value]="list.id" style="min-width: 100%;">
+                              {{ list.name + ' ' + list.lastName }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <button mat-raised-button color="accent" class="submit-button" aria-label="Update">
+                          Update
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Refer Patient to:</td>
+                    <td>
+                      <button mat-raised-button color="accent" aria-label="Update" (click)="assignPatientToBranch()">
+                        Other Branch
+                      </button>
+                      <button mat-raised-button color="primary" aria-label="Update" (click)="assignPatientToOthers()">
+                        External(Hospital/others)
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-tab>
+
+          <!--START VISIT-NOTE=========================== -->
+
+          <!-- VISiT NOTES -->
+          <mat-tab label="Visit Notes List">
+            <div class="user tab-content p-24">
+              <div>
+                <button mat-raised-button (click)="newVisitRecord()" class="add-contact-button mat-white-bg my-12 mt-sm-0">
+                  <span>NEW RECORD</span>
+                </button>
+              </div>
+              <app-visit-notes-list></app-visit-notes-list>
+            </div>
+          </mat-tab>
+          <!-- END OF VISIT-NOT========================== -->
+
+          <!--Appointment -->
+
+          <mat-tab label="Appointments">
+            <div class="user tab-content p-24">
+              <div>
+                <button mat-raised-button (click)="newPatientAppointment()" class="add-contact-button mat-white-bg my-12 mt-sm-0">
+                  <span>New Appointment</span>
+                </button>
+              </div>
+              <patient-appointments></patient-appointments>
+            </div>
+          </mat-tab>
+          <!-- END OF Appointment -->
+
+          <!--Assessments -->
+
+          <mat-tab label="Assessments">
+           <div class="user tab-content p-24">
+                  <div>
+                    <button mat-raised-button (click)="newPatientAssessment()" class="add-contact-button mat-white-bg my-12 mt-sm-0">
+                      <span>New DASS 21</span>
+                    </button>
+                  </div>
+                  <patient-assessments></patient-assessments>
+                </div>
+          </mat-tab>
+          <!-- END OF Assessments -->
+          <!-- SELF HARM REGISTRATION -->
+          <mat-tab label="Self-Harm">
+           <div class="user tab-content p-24">
+                  <div>
+                    <button mat-raised-button (click)="newSelfHarmRecord()" class="add-contact-button mat-white-bg my-12 mt-sm-0">
+                      <span>SELF HARM REGISTRATION FORM</span>
+                    </button>
+                  </div>
+                  <app-self-harm-list></app-self-harm-list>
+                </div>
+          </mat-tab>
+
+          <!--Referral Records  -->
+          <mat-tab label="Referral Records">
+           <div class="user tab-content p-24">
+                  <div>
+                  </div>
+                  <app-referral-list></app-referral-list>
+                </div>
+          </mat-tab>
+
+          <!-- Patient Closure -->
+          <mat-tab label="Closure">
+            <div class="user tab-content p-24">
+
+                  <form [formGroup]="closureForm" autocomplete="off">
+
+                    <p>Closure Checklist:</p>
+                    <ul style="list-style: none;">
+                      <li *ngFor="let checklist of checklists">
+                        <mat-checkbox 
+                          type="checkbox" 
+                          [value]="checklist" 
+                          required
+                        >
+                          {{checklist}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                    <br>
+
+                    <p>Follow up Arrangements:</p>
+                      <textarea 
+                        matInput 
+                        placeholder="Please state" 
+                        formControlName="followup" 
+                        required
+                        rows="5"
+                      ></textarea>
+                    <br>
+
+                    <p>Reason for Closure:</p>
+                    <mat-select placeholder="Select one" formControlName="reasonofclosure" required>
+                      <mat-option>Please select</mat-option>
+                      <mat-option value="Completed treatment">Completed treatment</mat-option>
+                      <mat-option value="Defaulted follow up after tracing">Defaulted follow up after tracing</mat-option>
+                      <mat-option value="Referred to other health care centre">Referred to other health care centre</mat-option>
+                      <mat-option value="Refused continuation of mental health intervention">Refused continuation of mental health intervention</mat-option>
+                      <mat-option value="Death">Death</mat-option>
+                      <mat-option value="Suicide">Suicide</mat-option>
+                      <mat-option value="Others; specify">Others; specify</mat-option>
+                    </mat-select>
+                    <br>
+
+                    <p>Comments about Reason for Collection (Optional):</p>
+                    <textarea 
+                      matInput 
+                      placeholder="Please leave your comment here" 
+                      formControlName="comment" 
+                      required
+                      rows="5"
+                    ></textarea>
+                    <br>
+
+                    <p>Case Summary:</p>
+                    <textarea 
+                      matInput 
+                      placeholder="Please state" 
+                      formControlName="casesummary" 
+                      required
+                      rows="5"
+                    ></textarea>
+                    <br>
+
+                    <mat-slide-toggle [checked]="closureForm.disabled" (change)="closureForm.disabled ? closureForm.enable() : closureForm.disable()">
+                      SAVE
+                    </mat-slide-toggle>
+
+                  </form>
+                </div>
+          </mat-tab>
+          <!-- End of Patient Closure -->
+
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

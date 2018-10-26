@@ -1,0 +1,81 @@
+<mat-table #table [dataSource]="dataSource" 
+           [@animateStagger]="{value:'50'}">
+
+    <!--Medication Name Column -->
+    <ng-container cdkColumnDef="medname">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Medication Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let medication">
+            <p class="text-truncate font-weight-600">{{medication.name}}</p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Dosage Column -->
+    <ng-container cdkColumnDef="dosage">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-sm style="font-size: 1em;">Dosage</mat-header-cell>
+        <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-sm>
+            <p class="text-truncate font-weight-600">
+                {{medication.dosage}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Duration Column -->
+    <ng-container cdkColumnDef="duration">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-md style="font-size: 1em;">Duration</mat-header-cell>
+        <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-md>
+            <p class="duration text-truncate">
+                {{medication.duration}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <!-- frequency Column -->
+    <ng-container cdkColumnDef="frequency">
+        <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-lg style="font-size: 1em;">Frequency</mat-header-cell>
+        <mat-cell *cdkCellDef="let medication" fxHide fxShow.gt-lg>
+            <p class="frequency text-truncate">
+                {{medication.frequency}}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+
+    <!-- Buttons Column -->
+    <ng-container cdkColumnDef="buttons">
+        <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;"></mat-header-cell>
+        <mat-cell *cdkCellDef="let medication">
+            <div fxFlex="row" fxLayoutAlign="end center">
+                <!-- <button mat-icon-button (click)="$event.stopPropagation();toggleStar(contact.id)" aria-label="Toggle star">
+                    <mat-icon *ngIf="user.starred.includes(contact.id)">star</mat-icon>
+                    <mat-icon *ngIf="!user.starred.includes(contact.id)">star_outline</mat-icon>
+                </button> -->
+
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                        (click)="$event.stopPropagation();">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item aria-label="remove" (click)="deleteMedication(medication)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove</span>
+                    </button>
+                </mat-menu>
+            </div>
+
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *cdkRowDef="let medication; columns: displayedColumns;"
+             class="medication"
+             (click)="editMedication(medication)"
+             matRipple
+             [@animate]="{value:'*',params:{y:'100%'}}">
+    </mat-row>
+
+  
+</mat-table>
+
+
+

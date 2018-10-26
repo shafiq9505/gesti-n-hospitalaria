@@ -1,0 +1,71 @@
+
+
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Template</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <form [formGroup]="templateForm" autocomplete="off">
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12">password</mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="title" formControlName="title" matInput placeholder="Title">
+                </mat-form-field>
+              </div>
+
+              <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                  <mat-icon class="mr-12 mt-12">password</mat-icon>
+                    <div [froalaEditor] name="text" formControlName="text"></div>
+                </div>
+
+                <p>Category</p>
+                <mat-radio-group placeholder=" " formControlName="category" [(ngModel)]="template.category" required>
+                  <mat-radio-button value="Visit Note">Visit Note</mat-radio-button>&emsp;&emsp;
+                  <mat-radio-button value="Referral Note">Referral Note</mat-radio-button>&emsp;&emsp;
+                </mat-radio-group><br>
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="p-24 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button *ngIf="action !=='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(templateForm)"
+                class="save-button mat-accent"
+                [disabled]="templateForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(['save',templateForm])"
+                class="save-button mat-accent"
+                [disabled]="templateForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-button
+                class="mat-icon-button"
+                (click)="dialogRef.close(['delete',templateForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button>
+
+    </div>
+</div>

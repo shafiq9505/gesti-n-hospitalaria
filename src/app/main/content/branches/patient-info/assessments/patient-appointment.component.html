@@ -1,0 +1,77 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value: '50'}">
+  
+  <!-- TITLE -->
+  <!-- <ng-container cdkColumnDef="session">
+    <mat-header-cell *cdkHeaderCellDef>Note</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAssessments"> 
+      <p class="font-weight-600">{{patientAssessments.session_name}}</p>
+    </mat-cell>
+  </ng-container> -->
+  <!-- /TITLE -->
+
+  <!-- START -->
+    <ng-container cdkColumnDef="type">
+      <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Assessment</mat-header-cell>
+      <mat-cell *cdkCellDef="let patientAssessments">
+        <p class="font-weight-600">
+          {{ patientAssessments.type }}
+        </p>
+      </mat-cell>
+    </ng-container>
+     <!-- /START -->
+
+  <!-- END -->
+  <!-- <ng-container cdkColumnDef="end">
+    <mat-header-cell *cdkHeaderCellDef>End</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAssessments">
+      <p class="font-weight-600">
+        {{ patientAssessments.end }}
+      </p>
+    </mat-cell>
+  </ng-container> -->
+  <!-- /END -->
+
+  <!-- PHYSICIAN -->
+  <ng-container cdkColumnDef="physician">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Doctor</mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAssessments">
+      <p class="font-weight-600">
+        {{ patientAssessments.doctor_name }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /PHYSICIAN -->
+
+  <!-- TYPE -->
+  <ng-container cdkColumnDef="score">
+    <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Results<b>(D/A/S)</b></mat-header-cell>
+    <mat-cell *cdkCellDef="let patientAssessments">
+      <p class="font-weight-600">
+        {{ patientAssessments.result }}
+      </p>
+    </mat-cell>
+  </ng-container>
+  <!-- /TYPE -->
+
+  <!-- WHEN -->
+  <ng-container cdkColumnDef="when">
+      <mat-header-cell *cdkHeaderCellDef style="font-size: 1em;">Time</mat-header-cell>
+      <mat-cell *cdkCellDef="let patientAssessments">
+        <p class="font-weight-600">
+          {{ patientAssessments.when | date : "fullDate" }} {{patientAssessments.when | date : "shortTime"}}
+        </p>
+      </mat-cell>
+    </ng-container>
+    <!-- /WHEN -->
+
+  
+
+  <mat-header-row *cdkHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row 
+    *cdkRowDef="let patientAssessments; columns: displayColumns;" 
+    class="patientAssessments" 
+    
+    >
+  </mat-row>
+  
+</mat-table>

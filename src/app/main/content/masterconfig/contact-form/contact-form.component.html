@@ -1,0 +1,87 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <form [formGroup]="contactForm">
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12"></mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="reason1" formControlName="reason1" placeholder="Reason 1" matInput required>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12"></mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="reason2" formControlName="reason2" placeholder="Reason 2" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12"></mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="reason3" formControlName="reason3" placeholder="Reason 3" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12"></mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="reason4" formControlName="reason4" placeholder="Reason 4" matInput>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="mr-12 mt-12"></mat-icon>
+                <mat-form-field fxFlex>
+                    <input name="category" formControlName="category"  placeholder="Category" matInput>
+                </mat-form-field>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button *ngIf="action !=='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(contactForm)"
+                class="save-button mat-accent"
+                [disabled]="contactForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="dialogRef.close(['save',contactForm])"
+                class="save-button mat-accent"
+                [disabled]="contactForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-button
+                class="mat-icon-button"
+                (click)="dialogRef.close(['delete',contactForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button>
+
+    </div>
+</div>

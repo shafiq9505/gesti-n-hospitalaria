@@ -1,0 +1,70 @@
+<div id="register" fxLayout="row" fxLayoutAlign="start">
+
+
+    <div id="register-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="register-form">
+
+            <div class="logo" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+                <img src="favicon.ico">
+            </div>
+            <div class="title">CREATE AN ACCOUNT!</div>
+
+            <form name="registerForm" [formGroup]="registerForm" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="Name" formControlName="name">
+                    <mat-error *ngIf="registerFormErrors.name.required">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="registerFormErrors.email.required">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="!registerFormErrors.email.required && registerFormErrors.email.email">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                    <mat-error *ngIf="registerFormErrors.password.required">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm">
+                    <mat-error *ngIf="registerFormErrors.passwordConfirm.required">
+                        Password confirmation is required
+                    </mat-error>
+                    <mat-error *ngIf="registerFormErrors.passwordConfirm.passwordsNotMatch">
+                        Passwords must match
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-checkbox name="terms" aria-label="Accept" required>
+                        <span>Accept</span>
+                    </mat-checkbox>
+                    <a href="#">terms and conditions</a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="CREATE AN ACCOUNT"
+                        [disabled]="registerForm.invalid"  [routerLink]="'/users'" (click)="newContact()">
+                    CREATE AN ACCOUNT
+                </button>
+
+            </form>
+
+            <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Already have an account?</span>
+                <a class="link" [routerLink]="'/login'">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
